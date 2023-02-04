@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+}
+.header {
+  position: relative;
+}
+.formTitle {
+  text-align: center;
+}
+
+.header #navbarSupportedContent a {
+  color: white;
+}
+
+.header .reg_log {
+  position: absolute;
+  right: 15px;
+}
+
+.header .reg_log a,
+* {
+  color: rgb(161, 161, 161);
+  text-decoration: none;
+}
