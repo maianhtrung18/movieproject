@@ -2,6 +2,8 @@ import React from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { dangKyAction } from '../redux/action/dangKyAction';
+import { maNhom } from '../types/globalConst';
+
 
 export default function Registers() {
 
@@ -11,7 +13,7 @@ export default function Registers() {
             matKhau: "",
             email: "",
             soDt: "",
-            maNhom: "GP01",
+            maNhom: maNhom,
             hoTen: ""
         },
         validationSchema: Yup.object({
