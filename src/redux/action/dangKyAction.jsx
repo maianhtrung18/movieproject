@@ -6,7 +6,7 @@ export const dangKyAction = (thongTinUser) => {
 
 let dangKy = axios({
   method: 'post',
-  url: 'https://movienew.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy',
+  url: `${process.env.REACT_APP_DOMAIN}/api/QuanLyNguoiDung/DangKy`,
   data: thongTinUser,
   headers: {
     TokenCybersoft: token

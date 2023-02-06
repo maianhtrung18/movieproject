@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Header from './components/Header';
 import Carousel from './components/Carousel';
 import MovieList from './components/MovieList';
+import ThongTinRap from './components/ThongTinRap';
 
 
 
@@ -18,11 +19,12 @@ function App() {
       <Switch>
        <FormTemplate path='/registers' component={Registers}/>
        <FormTemplate path='/login' component={Login}/>
-       <Route exact path='/home'>
+       <Route exact path='/'>
 
         <Header/>
         <Carousel/>
         <MovieList/>
+        <ThongTinRap/>
         </Route>
 
       </Switch>

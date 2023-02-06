@@ -29,3 +29,68 @@ body {
   color: rgb(161, 161, 161);
   text-decoration: none;
 }
+
+.movie .moviePoster {
+  width: 100%;
+  padding-top: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.movie .movieName {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 12px;
+  text-transform: capitalize;
+  line-height: 14px;
+  height: 28px;
+}
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+/*reset css*/
+
+/****** Style Star Rating Widget *****/
+#rating {
+  border: none;
+  line-height: 3px;
+}
+#rating > input {
+  display: none;
+}
+/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating > label:before {
+  margin: 5px;
+  font-size: 10px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+/*1 ngôi sao*/
+#rating > .half:before {
+  content: "\f089";
+  position: absolute;
+  bottom: 16px;
+}
+/*0.5 ngôi sao*/
+#rating > label {
+  color: #ddd;
+  float: right;
+}
+#rating > input:checked ~ label {
+  color: #ffd700;
+}
+
+/* thong tin rap */
+.thongTinRap_Container {
+  margin: auto;
+}
+
+.logoHeThongRap {
+  width: 50%;
+  padding-top: 50%;
+  /* display: block; */
+  background-size: contain;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  /* padding-bottom: 10px; */
+}
