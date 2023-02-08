@@ -85,12 +85,38 @@ body {
 }
 
 .logoHeThongRap {
-  width: 50%;
-  padding-top: 50%;
+  width: 90%;
+  padding-top: 90%;
   /* display: block; */
   background-size: contain;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+  cursor: pointer;
   /* padding-bottom: 10px; */
+}
+
+.rapTheoHeThong {
+  cursor: pointer;
+  padding: 10px;
+  height: 90px;
+  overflow: hidden;
+  border-top: solid 1px #ddd;
+}
+
+.rapTheoHeThong:last-child {
+  border-bottom: solid 1px #ddd;
+}
+
+.rapName {
+  font-size: 14px;
+}
+
+.rapAddress {
+  font-size: 12px;
+}
+
+.rapTheoHeThong_Image .image {
+  width: 100%;
+  padding-top: 100%;
 }

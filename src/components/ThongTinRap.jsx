@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { token } from '../types/globalConst';
-import { NavLink } from 'react-router-dom';
 
 export default function ThongTinRap() {
     let [heThongRap, setHeThongRap] = useState([]);
-    let [thongTinCumRapTheoHeThong, setthongTinCumRapTheoHeThong] = useState([])
+    let [cumData, setCumData] = useState({})
+    let [danhSachPhim, setDanhSachPhim] = useState({})
 
     useEffect(() => {
         getThongTinHeThongRap()
@@ -18,62 +18,93 @@ export default function ThongTinRap() {
             headers: { 'TokenCybersoft': token }
         });
         thongTinHeThongRap.then((result) => {
-            // console.log(result.data.content[1].maHeThongRap)
             setHeThongRap(result.data.content)
-            getThongTinCumRapTheoHeThong(result.data.content[1].maHeThongRap)
+            return result
+        }).then((result) => {
+             getThongTinLichChieuHeThongRap(result.data.content[0].maHeThongRap)
         })
             .catch((error) => {
                 console.log(error)
             })
     }
 
-    let getThongTinCumRapTheoHeThong = (maHeThongRap) => {
-        let getThongTinCumRapTheoHeThong = axios({
+
+    let getThongTinLichChieuHeThongRap = (maHeThongRap) => {
+        let getThongTinLichChieuHeThongRap = axios({
             method: 'GET',
-            url: `${process.env.REACT_APP_DOMAIN}/api/QuanLyRap/LayThongTinCumRapTheoHeThong`,
+            url: `${process.env.REACT_APP_DOMAIN}/api/QuanLyRap/LayThongTinLichChieuHeThongRap`,
             headers: { 'TokenCybersoft': token },
             params: {
                 maHeThongRap: maHeThongRap
             },
         });
-        getThongTinCumRapTheoHeThong.then((result) => {
-                console.log("123",result.data.content)
-                setthongTinCumRapTheoHeThong(result.data.content)
-            })
+
+        getThongTinLichChieuHeThongRap.then((result) => {
+            setCumData(result.data.content[0])
+            setDanhSachPhim(result.data.content[0].lstCumRap[0])
+            
+        })
+   
+        .catch((error) => {
+            console.log(error)
+        })
+
     }
 
-    let renderCumRapTheoHeThong = () => {
-        return thongTinCumRapTheoHeThong.map((heThong) => {
-            return <div className='rapTheoHeThong'>{heThong.tenCumRap}</div>
+    
+
+    let getLichChieuPhimTheoRap = (number) => {
+        let lstCumRap = cumData.lstCumRap? cumData.lstCumRap[number] : []
+        setDanhSachPhim(lstCumRap)
+    }
+
+    let renderThongTinLichChieuHeThongRap = () => { //bu nhat
+         let phimList = danhSachPhim.danhSachPhim? danhSachPhim.danhSachPhim : []
+         console.log(phimList)
+        return phimList.map((lichChieu) => {
+            return <div>{lichChieu.tenPhim}
+            </div>
         })
     }
 
-    let renderHeThongRap = () => {
-        return heThongRap.map((rap) => {
+    let renderCumRapTheoHeThong = () => { //vua vua
+        let lstCumRap = cumData.lstCumRap ? cumData.lstCumRap : []
+console.log(lstCumRap)
+        return lstCumRap.map((heThong, index) => {
             return <div onClick={() => {
-                getThongTinCumRapTheoHeThong(rap.maHeThongRap)
-            }} key={rap.maHeThongRap} className={'logoHeThongRapContainer'}>
-                <div className='logoHeThongRap' style={{ backgroundImage: `url(${rap.logo})` }}>
-
+                getLichChieuPhimTheoRap(index)
+            }} key={heThong.maCumRap} className='rapTheoHeThong row'>
+                <div className='rapTheoHeThong_Image col-3'>
+                    <div className='image' style={{backgroundImage: `url(${heThong.hinhAnh})`}}></div>
+                </div>
+                <div className='rapTheoHeThong_Container col-9'>
+                    <div className='rapName'>{heThong.tenCumRap}</div>
+                    <div className='rapAddress'>{heThong.diaChi}</div>
                 </div>
             </div>
+        })
+    }
 
-
+    let renderHeThongRap = () => { //nho
+        return heThongRap.map((rap) => {
+            return <div onClick={() => {
+                getThongTinLichChieuHeThongRap(rap.maHeThongRap)
+            }} key={rap.maHeThongRap} className={'logoHeThongRapContainer'}>
+                <div className='logoHeThongRap' style={{ backgroundImage: `url(${rap.logo})` }}>
+                </div>
+            </div>
         })
     }
 
     return (
         <div className='thongTinRap'>
             <div className='thongTinRap_Container container row'>
-                <div className='col-2 heThongRap'>
+                <div className='col-1 heThongRap'>
                     {renderHeThongRap()}
-
                 </div>
-                <div className='col-3 cumRapTheoHeThong'>{renderCumRapTheoHeThong()}</div>
-                <div className='col-7'>567</div>
-
+                <div className='col-4 cumRapTheoHeThong'>{renderCumRapTheoHeThong()}</div>
+                <div className='col-7'>{renderThongTinLichChieuHeThongRap()}</div>
             </div>
-
         </div>
     )
 }
