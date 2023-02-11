@@ -18,14 +18,14 @@ function App() {
   return (
     <Router history={history}>
       <Switch>
-       <FormTemplate path='/registers' component={Registers}/>
-       <FormTemplate path='/login' component={Login}/>
-       <Route exact path='/home'>
+        <FormTemplate path='/registers' component={Registers} />
+        <FormTemplate path='/login' component={Login} />
+        <Route exact path='/home'>
 
-        <Header/>
-        <Carousel/>
-        <MovieList/>
-        <ThongTinRap/>
+          <Header />
+          <Carousel />
+          <MovieList />
+          <ThongTinRap />
         </Route>
 
       </Switch>

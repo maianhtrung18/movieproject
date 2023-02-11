@@ -186,6 +186,11 @@ body {
   text-transform: capitalize;
 }
 
+.thongTinLichChieu_TenPhim a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .thongTinLichChieu_Container .lichChieuPhim {
   list-style: none;
   display: inline;

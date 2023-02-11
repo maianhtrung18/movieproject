@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { token } from '../types/globalConst';
+import { NavLink } from 'react-router-dom';
 // import { useHistory } from "react-router-dom";
 
 export default function ThongTinRap() {
@@ -97,7 +98,7 @@ export default function ThongTinRap() {
                         <div className='tinhTrangPhim'>{lichChieu.dangChieu? 'Đang chiếu' : 'Sắp chiếu'}</div>
                     </div>
                     <div className='thongTinLichChieu_Container col-10'>
-                        <div className='thongTinLichChieu_TenPhim'>{lichChieu.tenPhim.toLowerCase()}</div>
+                        <div className='thongTinLichChieu_TenPhim'><NavLink to={`/chitietphim/${lichChieu.maPhim}`}>{lichChieu.tenPhim.toLowerCase()} </NavLink> </div>
                         <ul className='lichChieuPhim'>
                             {renderLichChieuPhim(lichChieu)}
                         </ul>
