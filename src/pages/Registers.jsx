@@ -28,6 +28,7 @@ export default function Registers() {
         },
     });
 
+
     return (
         <div className='container'>
             <h2 className='formTitle'>Đăng Ký</h2>

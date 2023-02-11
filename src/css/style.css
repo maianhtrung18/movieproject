@@ -126,12 +126,12 @@ body {
   padding: 10px;
   height: 90px;
   overflow: hidden;
-  border-top: solid 1px rgba(221, 221, 221, 0.5);
+  border-top: solid 1px rgba(221, 221, 221, 0.2);
   position: relative;
 }
 
 .rapTheoHeThong:last-child {
-  border-bottom: solid 1px rgba(221, 221, 221, 0.5);
+  border-bottom: solid 1px rgba(221, 221, 221, 0.2);
 }
 
 .rapTheoHeThong::after {

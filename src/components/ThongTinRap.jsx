@@ -90,7 +90,6 @@ export default function ThongTinRap() {
 
 
         return phimList.map((lichChieu) => {
-            console.log(lichChieu)
             if (lichChieu.dangChieu || lichChieu.sapChieu) {
                 return <div key={lichChieu.maPhim} className='thongTinLichChieu row'>
                     <div className='thongTinLichChieu_Image col-2'>
