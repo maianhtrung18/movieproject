@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import { token } from '../types/globalConst';
 import { NavLink } from 'react-router-dom';
 import { thongTinHeThongRapAPI, thongTinLichChieuHeThongRapAPI } from '../API/api';
 // import { useHistory } from "react-router-dom";
@@ -32,7 +30,6 @@ export default function ThongTinRap() {
 
     let getThongTinLichChieuHeThongRap = (maHeThongRap) => {
         let getThongTinLichChieuHeThongRap = thongTinLichChieuHeThongRapAPI(maHeThongRap)
-
         getThongTinLichChieuHeThongRap.then((result) => {
             setCumData(result.data.content[0])
             setDanhSachPhim(result.data.content[0].lstCumRap[0])
@@ -137,7 +134,7 @@ export default function ThongTinRap() {
                     {renderHeThongRap()}
                 </div>
                 <div className='col-12 col-md-6 col-xl-4 cumRapTheoHeThong'>{renderCumRapTheoHeThong()}</div>
-                <div className='col-12 col-md-6 col-xl-7'>{renderThongTinLichChieuHeThongRap()}</div>
+                <div className='col-12 col-md-6 col-xl-7 lichChieuPhim'>{renderThongTinLichChieuHeThongRap()}</div>
             </div>
         </div>
     )

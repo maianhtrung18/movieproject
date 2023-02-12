@@ -89,6 +89,12 @@ body {
 .thongTinRap_Container {
   margin: auto;
 }
+
+.thongTinRap_Container .heThongRap,
+.cumRapTheoHeThong,
+.lichChieuPhim {
+  margin-bottom: 40px;
+}
 /* 
 .heThongRap {
   display: inline;
@@ -167,12 +173,16 @@ body {
 .rapAddress {
   font-size: 12px;
 }
+.rapTheoHeThong_Image {
+  overflow: hidden;
+  height: 100%;
+}
 
 .rapTheoHeThong_Image .image {
   width: 100%;
   padding-top: 100%;
   background-size: contain;
-  /* background-repeat: no-repeat; */
+  background-repeat: no-repeat;
 }
 
 .thongTinLichChieu {

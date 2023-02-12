@@ -5,7 +5,6 @@ export default function ChiTietPhim() {
     let {maphim} = useParams();
     console.log(maphim)
   return (
-
-    <div>ChiTietPhim</div>
+    <div>Mã Phim: {maphim}</div>
   )
 }
