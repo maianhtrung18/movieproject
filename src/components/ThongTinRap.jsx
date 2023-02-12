@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { token } from '../types/globalConst';
 import { NavLink } from 'react-router-dom';
+import { thongTinHeThongRapAPI, thongTinLichChieuHeThongRapAPI } from '../API/api';
 // import { useHistory } from "react-router-dom";
 
 export default function ThongTinRap() {
@@ -11,18 +12,12 @@ export default function ThongTinRap() {
     const [isHeThongRapActive, setIsHeThongRapActive] = useState(0)
     const [isRapTheoHeThongActive, setIsRapTheoHeThongActive] = useState(0)
 
-//    let  history = useHistory()
-
     useEffect(() => {
         getThongTinHeThongRap()
     }, [])
 
     let getThongTinHeThongRap = () => {
-        let thongTinHeThongRap = axios({
-            method: 'GET',
-            url: `${process.env.REACT_APP_DOMAIN}/api/QuanLyRap/LayThongTinHeThongRap`,
-            headers: { 'TokenCybersoft': token }
-        });
+        let thongTinHeThongRap = thongTinHeThongRapAPI()
         thongTinHeThongRap.then((result) => {
             setHeThongRap(result.data.content)
             return result
@@ -36,28 +31,18 @@ export default function ThongTinRap() {
 
 
     let getThongTinLichChieuHeThongRap = (maHeThongRap) => {
-        let getThongTinLichChieuHeThongRap = axios({
-            method: 'GET',
-            url: `${process.env.REACT_APP_DOMAIN}/api/QuanLyRap/LayThongTinLichChieuHeThongRap`,
-            headers: { 'TokenCybersoft': token },
-            params: {
-                maHeThongRap: maHeThongRap
-            },
-        });
+        let getThongTinLichChieuHeThongRap = thongTinLichChieuHeThongRapAPI(maHeThongRap)
 
         getThongTinLichChieuHeThongRap.then((result) => {
             setCumData(result.data.content[0])
             setDanhSachPhim(result.data.content[0].lstCumRap[0])
 
         })
-
             .catch((error) => {
                 console.log(error)
             })
 
     }
-
-
 
     let getLichChieuPhimTheoRap = (number) => {
         let lstCumRap = cumData.lstCumRap ? cumData.lstCumRap[number] : []
@@ -75,6 +60,7 @@ export default function ThongTinRap() {
             if (!ele) {
                 lichChieuProcess.push(gioChieu)
             }
+            return ''
         })
 
         lichChieuProcess.sort((time1, time2) => time1.localeCompare(time2))
@@ -95,13 +81,15 @@ export default function ThongTinRap() {
                 return <div key={lichChieu.maPhim} className='thongTinLichChieu row'>
                     <div className='thongTinLichChieu_Image col-2'>
                         <div className='image' style={{ backgroundImage: `url(${lichChieu.hinhAnh})` }}></div>
-                        <div className='tinhTrangPhim'>{lichChieu.dangChieu? 'Đang chiếu' : 'Sắp chiếu'}</div>
+                        <div className='tinhTrangPhim'>{lichChieu.dangChieu ? 'Đang chiếu' : 'Sắp chiếu'}</div>
                     </div>
                     <div className='thongTinLichChieu_Container col-10'>
                         <div className='thongTinLichChieu_TenPhim'><NavLink to={`/chitietphim/${lichChieu.maPhim}`}>{lichChieu.tenPhim.toLowerCase()} </NavLink> </div>
-                        <ul className='lichChieuPhim'>
-                            {renderLichChieuPhim(lichChieu)}
-                        </ul>
+                        <NavLink to={`/chitietphim/${lichChieu.maPhim}`}>
+                            <ul className='lichChieuPhim'>
+                                {renderLichChieuPhim(lichChieu)}
+                            </ul>
+                        </NavLink>
                     </div>
                 </div>
             } else {
@@ -145,11 +133,11 @@ export default function ThongTinRap() {
     return (
         <div className='thongTinRap'>
             <div className='thongTinRap_Container container row'>
-                <div className='col-1 heThongRap'>
+                <div className='col-12 col-md-12 col-xl-1 heThongRap'>
                     {renderHeThongRap()}
                 </div>
-                <div className='col-4 cumRapTheoHeThong'>{renderCumRapTheoHeThong()}</div>
-                <div className='col-7'>{renderThongTinLichChieuHeThongRap()}</div>
+                <div className='col-12 col-md-6 col-xl-4 cumRapTheoHeThong'>{renderCumRapTheoHeThong()}</div>
+                <div className='col-12 col-md-6 col-xl-7'>{renderThongTinLichChieuHeThongRap()}</div>
             </div>
         </div>
     )

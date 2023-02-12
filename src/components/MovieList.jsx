@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { maNhom, token } from '../types/globalConst';
+import { history } from '../App';
 
 
 
@@ -65,18 +66,16 @@ export default function MovieList() {
             return <div onClick={() => {
                 chiTietPhim(phim)
             }} className='movie col-6 col-sm-4 col-md-3 col-lg-2 py-2 ' key={phim.maPhim} data-toggle="modal" data-target="#exampleModal">
-                <div className='moviePoster' style={{ backgroundImage: `url(${phim.hinhAnh})` }}>
+                <div className='moviePoster' onClick={() => {
+                    history.push(`/chitietphim/${phim.maPhim}`)
+                }}  style={{ backgroundImage: `url(${phim.hinhAnh})` }}>
                 </div>
                 <div className='movieName'>
                     {phim.tenPhim.toLowerCase()}
                 </div>
                 <div id="rating">
                     {renderStart(phim)}
-           
                 </div>
-
-
-
             </div>
         })
     }
@@ -87,7 +86,7 @@ export default function MovieList() {
                 {renderDanhSachPhim()}
             </div>
 
-            <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+            {/* <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -104,7 +103,7 @@ export default function MovieList() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
 
     )
