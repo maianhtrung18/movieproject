@@ -10,6 +10,7 @@ import Carousel from './components/Carousel';
 import MovieList from './components/MovieList';
 import ThongTinRap from './components/ThongTinRap';
 import { createBrowserHistory } from "history";
+import ChiTietPhim from './pages/ChiTietPhim';
 export const history = createBrowserHistory();
 
 
@@ -21,12 +22,16 @@ function App() {
         <FormTemplate path='/registers' component={Registers} />
         <FormTemplate path='/login' component={Login} />
         <Route exact path='/home'>
-
           <Header />
           <Carousel />
           <MovieList />
           <ThongTinRap />
         </Route>
+          <Route exact path='/chitietphim/:maphim'>
+            <Header/>
+            <ChiTietPhim/>
+          </Route>
+        
 
       </Switch>
     </Router>
