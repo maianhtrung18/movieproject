@@ -1,7 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import UserName from './UserName'
 
 export default function Header() {
+
+    let {userLogin} = useSelector(state => state.loginReducer)
+    console.log("tr", userLogin)
     return (
         <div className='header'>
             <nav className="navbar navbar-expand-lg navbar-dark">
@@ -26,11 +31,9 @@ export default function Header() {
                        
                     </ul>
                 </div>
-                <div className="reg_log">
-                    <NavLink to='/registers'>Đăng Ký</NavLink>
-                    /
-                     <NavLink to='/login'>Đăng Nhập</NavLink>
-                </div>
+
+               <UserName userLogin={userLogin}/>
+                
             </nav>
 
         </div>

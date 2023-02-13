@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import { thongTinHeThongRapAPI, thongTinLichChieuHeThongRapAPI } from '../API/api';
-// import { useHistory } from "react-router-dom";
 
 export default function ThongTinRap() {
     let [heThongRap, setHeThongRap] = useState([]);
@@ -12,33 +11,31 @@ export default function ThongTinRap() {
 
     useEffect(() => {
         getThongTinHeThongRap()
-    }, [])
+    },[])
 
     let getThongTinHeThongRap = () => {
         let thongTinHeThongRap = thongTinHeThongRapAPI()
         thongTinHeThongRap.then((result) => {
             setHeThongRap(result.data.content)
             return result
-        }).then((result) => {
-            getThongTinLichChieuHeThongRap(result.data.content[0].maHeThongRap)
         })
+            .then((result) => {
+                getThongTinLichChieuHeThongRap(result.data.content[0].maHeThongRap)
+            })
             .catch((error) => {
                 console.log(error)
             })
     }
-
 
     let getThongTinLichChieuHeThongRap = (maHeThongRap) => {
         let getThongTinLichChieuHeThongRap = thongTinLichChieuHeThongRapAPI(maHeThongRap)
         getThongTinLichChieuHeThongRap.then((result) => {
             setCumData(result.data.content[0])
             setDanhSachPhim(result.data.content[0].lstCumRap[0])
-
         })
             .catch((error) => {
                 console.log(error)
             })
-
     }
 
     let getLichChieuPhimTheoRap = (number) => {
@@ -69,9 +66,8 @@ export default function ThongTinRap() {
         })
     }
 
-    let renderThongTinLichChieuHeThongRap = () => { //bu nhat
+    let renderThongTinLichChieuHeThongRap = () => { 
         let phimList = danhSachPhim.danhSachPhim ? danhSachPhim.danhSachPhim : []
-
 
         return phimList.map((lichChieu) => {
             if (lichChieu.dangChieu || lichChieu.sapChieu) {
@@ -92,11 +88,10 @@ export default function ThongTinRap() {
             } else {
                 return <></>
             }
-
         })
     }
 
-    let renderCumRapTheoHeThong = () => { //vua vua
+    let renderCumRapTheoHeThong = () => { 
         let lstCumRap = cumData.lstCumRap ? cumData.lstCumRap : []
         return lstCumRap.map((heThong, index) => {
             return <div onClick={() => {
@@ -114,7 +109,7 @@ export default function ThongTinRap() {
         })
     }
 
-    let renderHeThongRap = () => { //nho
+    let renderHeThongRap = () => { 
         return heThongRap.map((rap, index) => {
             return <div onClick={(event) => {
                 getThongTinLichChieuHeThongRap(rap.maHeThongRap)
@@ -129,7 +124,7 @@ export default function ThongTinRap() {
 
     return (
         <div className='thongTinRap'>
-            <div className='thongTinRap_Container container row'>
+            <div className='thongTinRap_Container container row' >
                 <div className='col-12 col-md-12 col-xl-1 heThongRap'>
                     {renderHeThongRap()}
                 </div>

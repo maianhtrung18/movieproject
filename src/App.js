@@ -11,6 +11,7 @@ import MovieList from './components/MovieList';
 import ThongTinRap from './components/ThongTinRap';
 import { createBrowserHistory } from "history";
 import ChiTietPhim from './pages/ChiTietPhim';
+import Footer from './components/Footer';
 export const history = createBrowserHistory();
 
 
@@ -26,6 +27,7 @@ function App() {
           <Carousel />
           <MovieList />
           <ThongTinRap />
+          <Footer/>
         </Route>
           <Route exact path='/chitietphim/:maphim'>
             <Header/>

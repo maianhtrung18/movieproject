@@ -29,6 +29,10 @@ body {
   right: 15px;
 }
 
+.header_taikhoan {
+  display: inline;
+}
+
 .header .reg_log a,
 * {
   color: rgb(161, 161, 161);
@@ -95,6 +99,7 @@ body {
 .lichChieuPhim {
   margin-bottom: 40px;
 }
+
 /* 
 .heThongRap {
   display: inline;

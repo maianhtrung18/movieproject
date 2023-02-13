@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import { dangKyAction } from '../redux/action/dangKyAction';
 import { maNhom } from '../types/globalConst';
 
-
 export default function Registers() {
 
     const formik = useFormik({
@@ -27,7 +26,6 @@ export default function Registers() {
             dangKyAction(values)
         },
     });
-
 
     return (
         <div className='container'>
@@ -57,7 +55,6 @@ export default function Registers() {
                         <div>{formik.errors.email}</div>
                     ) : null}
                 </div>
-
                 <div className="form-group">
                     <label>Số điện thoại</label>
                     <input onChange={formik.handleChange}
@@ -76,7 +73,6 @@ export default function Registers() {
                 </div>
                 <button type='submit' className="btn btn-primary">Đăng Ký</button>
             </form>
-
         </div>
     )
 }
