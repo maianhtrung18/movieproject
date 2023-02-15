@@ -10,8 +10,8 @@ import Carousel from './components/Carousel';
 import MovieList from './components/MovieList';
 import ThongTinRap from './components/ThongTinRap';
 import { createBrowserHistory } from "history";
-import ChiTietPhim from './pages/ChiTietPhim';
 import Footer from './components/Footer';
+import ChiTietPhim from './pages/MovieDetail/ChiTietPhim';
 export const history = createBrowserHistory();
 
 
