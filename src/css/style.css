@@ -231,3 +231,129 @@ body {
   font-weight: 900;
   font-size: 10px;
 }
+
+.movieDetail__detailTable td{
+padding-top: 20px;
+padding-right: 20px;
+}
+
+.movieDetail_leftContent{
+  
+}
+
+.btn__detail{
+  margin: 10%;
+  text-align: center;
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+  transition: all .4s ease-in-out;
+}
+
+.btn__detail:hover {
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+}
+
+.btn__detail:focus {
+  outline: none;
+}
+
+.movieDetail_rightContent{
+  position: relative;
+  padding-bottom: 100px;
+  min-height: max-content;
+}
+
+.btn__detail{
+  position: absolute;
+  bottom: 10px;
+}
+
+.btn__detail.btn__detailBooking{
+  background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+left: 30%;
+padding:14px;
+text-decoration: none;
+}
+
+.btn__detail.btn__trailer{
+  background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+  box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+  left: 5px;
+}
+
+.movieName__detail{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+      font-size: 30px;
+}
+
+.movieDetail__tableCinema tr{
+  border-bottom: solid 1px rgba(221, 221, 221, 0.2);
+  padding: 5px;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.movieDetail__tableCinema .active{
+  opacity: 1;
+}
+
+.movieDetail__tableCinema td{
+  padding: 20px;
+}
+
+.movieDetail__tableBooking{
+ width: 100%;
+}
+
+.movieDetail__tableBooking a{
+  display: inline-block;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #ff9800;
+  font-weight: bold;
+}
+
+.movieDetail__tableBooking td{
+  padding-left: 20px;
+  padding-bottom: 5px;
+}
+
+.movieDetail_movieTimeRow{
+  border-bottom: solid 1px rgba(221, 221, 221, 0.2);
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
