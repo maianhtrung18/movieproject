@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
-import { thongTinHeThongRapAPI, thongTinLichChieuHeThongRapAPI } from '../API/api';
+import { thongTinHeThongRapAPI, thongTinLichChieuHeThongRapAPI } from '../../API/api';
 
 export default function ThongTinRap() {
     let [heThongRap, setHeThongRap] = useState([]);

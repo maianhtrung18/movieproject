@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { history } from '../App';
-import { danhSachPhimAPI } from '../API/api';
-
-
+import { danhSachPhimAPI } from '../../API/api';
+import { history } from '../../App';
 
 export default function MovieList() {
 

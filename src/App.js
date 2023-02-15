@@ -6,9 +6,9 @@ import FormTemplate from './templates/FormTemplate';
 import Registers from './pages/Registers';
 import Login from './pages/Login';
 import Header from './components/Header';
-import Carousel from './components/Carousel';
-import MovieList from './components/MovieList';
-import ThongTinRap from './components/ThongTinRap';
+import Carousel from './pages/Home/Carousel';
+import MovieList from './pages/Home/MovieList';
+import ThongTinRap from './pages/Home/ThongTinRap';
 import { createBrowserHistory } from "history";
 import ChiTietPhim from './pages/ChiTietPhim';
 import Footer from './components/Footer';
@@ -24,7 +24,7 @@ function App() {
         <FormTemplate path='/login' component={Login} />
         <Route exact path='/home'>
           <Header />
-          <Carousel />
+          <Carousel/>
           <MovieList />
           <ThongTinRap />
           <Footer/>

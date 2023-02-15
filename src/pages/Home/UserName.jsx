@@ -1,12 +1,11 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { dangXuatAction } from '../redux/action/dangXuatAction'
+import { dangXuatAction } from '../../redux/action/dangXuatAction'
 
 
 export default function UserName(props) {
 let dispatch = useDispatch()
-    // console.log("uk", props.userLogin)
     if (props.userLogin === null) {
         return (
             <div className="reg_log">

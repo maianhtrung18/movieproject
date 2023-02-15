@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import UserName from './UserName'
+import UserName from '../pages/Home/UserName'
 
 export default function Header() {
 
