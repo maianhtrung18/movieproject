@@ -1,18 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { history } from '../../App'
+
 
 export default function LichChieuPhim(props) {
 
+  let [heThongRapChieu, setHeThongRapChieu] = useState([])
+  let [cumRapChieu, setCumRapChieu] = useState([])
+  let [heThongRapActive, setHeThongRapActice] = useState("")
+
+
+  useEffect(() => {
+      if(props.movieDetail.heThongRapChieu){
+          setHeThongRapChieu(props.movieDetail.heThongRapChieu)
+            if(props.movieDetail.heThongRapChieu.length > 0){
+              setCumRapChieu(props.movieDetail.heThongRapChieu[0].cumRapChieu)
+              setHeThongRapActice(props.movieDetail.heThongRapChieu[0].maHeThongRap)
+            } else {
+              setCumRapChieu([])
+            }
+      }
+  }, [props.movieDetail]);
+
+
     const renderHeThongRap = () => {
     
-        return props.heThongRapChieu.map((heThongRap) => {
+        return heThongRapChieu.map((heThongRap) => {
           let cssActive = ""
-          if(heThongRap.maHeThongRap == props.heThongRapActive){
+          if(heThongRap.maHeThongRap == heThongRapActive){
             cssActive = "active"
           }
           return <tr className={`${cssActive}`} key={heThongRap.maHeThongRap} onClick={() => {
-            props.setHeThongRapActice(heThongRap.maHeThongRap)
-            props.setCumRapPhim(heThongRap.cumRapChieu)
+           setHeThongRapActice(heThongRap.maHeThongRap)
+           setCumRapChieu(heThongRap.cumRapChieu)
           }}>
             <td>
               <img style={{width: "50px"}} className='img-fluid' src={heThongRap.logo} alt="" />
@@ -24,13 +44,13 @@ export default function LichChieuPhim(props) {
     
     
       const renderCumRapChieu = () => {
-        return props.cumRapPhim.map((cumRap) => { 
+        return cumRapChieu.map((cumRap) => { 
           return <>
           <tr>
             <td>
-              <img style={{width: "50px"}} src={cumRap.hinhAnh} alt="" />
+              <img style={{width: "50px"}} className='img-fluid' src={cumRap.hinhAnh} alt="" />
             </td>
-            <td style={{paddingTop:"30px"}}>
+            <td style={{paddingTop:"20px"}}>
               <h6>{cumRap.tenCumRap}</h6>
               <p>{cumRap.diaChi}</p>
             </td>
@@ -49,9 +69,9 @@ export default function LichChieuPhim(props) {
       return lichChieuPhimArray.map((lichChieuPhim) => { 
         let ngayGioChieuPhim = new Date (lichChieuPhim.ngayChieuGioChieu)
         let gioChieuPhim = addZeroToTime(ngayGioChieuPhim.getHours()) + ":" + addZeroToTime(ngayGioChieuPhim.getMinutes())
-        return <Link to="/home">
-          {gioChieuPhim}
-        </Link>
+        return  <Link to={`/chitietphongve/${lichChieuPhim.maLichChieu}`}>
+                {gioChieuPhim}
+                 </Link>
        })
     }
     

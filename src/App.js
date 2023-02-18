@@ -12,12 +12,14 @@ import ThongTinRap from './pages/Home/ThongTinRap';
 import { createBrowserHistory } from "history";
 import Footer from './components/Footer';
 import ChiTietPhim from './pages/MovieDetail/ChiTietPhim';
+import ChiTietPhongVe from './pages/TicketRoom/ChiTietPhongVe';
 export const history = createBrowserHistory();
 
 
 
 function App() {
   return (
+    
     <Router history={history}>
       <Switch>
         <FormTemplate path='/registers' component={Registers} />
@@ -33,7 +35,7 @@ function App() {
             <Header/>
             <ChiTietPhim/>
           </Route>
-        
+        <Route exact path='/chitietphongve/:malichchieu' component={ChiTietPhongVe}/> 
 
       </Switch>
     </Router>
