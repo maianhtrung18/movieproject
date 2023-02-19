@@ -26,7 +26,6 @@ export default function QuanLyPhim() {
 
     let xoaPhim = (maPhim) => {
         let adminToken = localStorage.getItem(TOKEN)
-        console.log(adminToken)
         let xoaPhim = xoaPhimAPI(maPhim, adminToken)
         xoaPhim.then(() => {
             history.go(0)

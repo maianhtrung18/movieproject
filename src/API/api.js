@@ -66,3 +66,15 @@ export const xoaPhimAPI = (maphim, tokenAdmin) => {
         },
     });
 }
+
+export const uploadPhimAPI = (data, tokenAdmin) => {
+    return axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_DOMAIN}/api/QuanLyPhim/ThemPhimUploadHinh`,
+        data: data,
+        headers: {
+            TokenCybersoft: token,
+            Authorization: `bearer ${tokenAdmin}`
+        }
+    });
+}
