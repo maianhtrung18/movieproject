@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import './css/style.css'
-import { BrowserRouter, Route, Router, Switch, useParams } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import FormTemplate from './templates/FormTemplate';
 import Registers from './pages/Registers';
 import Login from './pages/Login';
@@ -13,8 +12,10 @@ import { createBrowserHistory } from "history";
 import Footer from './components/Footer';
 import ChiTietPhim from './pages/MovieDetail/ChiTietPhim';
 import ChiTietPhongVe from './pages/TicketRoom/ChiTietPhongVe';
+import AdminTemplate from './templates/AdminTemplate';
+import QuanLyPhim from './pages/Admin/Pages/QuanLyPhim';
+import ThemPhimMoi from './pages/Admin/Pages/ThemPhimMoi';
 export const history = createBrowserHistory();
-
 
 
 function App() {
@@ -26,16 +27,18 @@ function App() {
         <FormTemplate path='/login' component={Login} />
         <Route exact path='/home'>
           <Header />
-          <Carousel/>
+          <Carousel />
           <MovieList />
           <ThongTinRap />
-          <Footer/>
+          <Footer />
         </Route>
           <Route exact path='/chitietphim/:maphim'>
             <Header/>
             <ChiTietPhim/>
           </Route>
-        <Route exact path='/chitietphongve/:malichchieu' component={ChiTietPhongVe}/> 
+        <AdminTemplate path='/quanlyphim' component={QuanLyPhim}/>
+        <AdminTemplate path='/addnew' component={ThemPhimMoi}/>
+         <Route exact path='/chitietphongve/:malichchieu' component={ChiTietPhongVe}/> 
 
       </Switch>
     </Router>

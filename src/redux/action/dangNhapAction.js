@@ -1,6 +1,8 @@
 import { dangNhapAPI } from "../../API/api"
 import { history } from "../../App"
+import { quanTri } from "../../types/globalConst"
 import { DANG_NHAP, TOKEN, userMovie } from "../../ulti/setting"
+
 
 export const dangNhapAction = (thongTinUser) => {
 
@@ -10,8 +12,14 @@ export const dangNhapAction = (thongTinUser) => {
             localStorage.setItem(TOKEN, result.data.content.accessToken)
             let userJson = JSON.stringify(result.data.content)
             localStorage.setItem(userMovie, userJson)
-            
-            history.push('/home')
+
+            console.log()
+            if (result.data.content.maLoaiNguoiDung === quanTri) {
+                history.push('/quanlyphim')
+            } else {
+                history.push('/home')
+            }
+
             let action = {
                 type: DANG_NHAP,
                 userLogin: result.data.content

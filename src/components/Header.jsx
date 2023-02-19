@@ -6,7 +6,6 @@ import UserName from '../pages/Home/UserName'
 export default function Header() {
 
     let {userLogin} = useSelector(state => state.loginReducer)
-    console.log("tr", userLogin)
     return (
         <div className='header'>
             <nav className="navbar navbar-expand-lg navbar-dark">
