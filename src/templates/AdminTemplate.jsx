@@ -26,7 +26,10 @@ export default function AdminTemplate(props) {
     })
      
     let setSelectedMenu = () => {
-        if (history.location.pathname === '/addnew') {
+        if (history.location.pathname === '/quanlyphim') {
+            setCurrent('2')
+        }
+        else if (history.location.pathname === '/addnew') {
             setCurrent('3')
         }
     }
