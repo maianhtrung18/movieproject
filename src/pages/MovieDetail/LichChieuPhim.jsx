@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { history } from '../../App'
 
 
 export default function LichChieuPhim(props) {

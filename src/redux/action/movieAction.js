@@ -51,3 +51,54 @@ export const getTicketsRoomAction = (malichchieu) => {
             })
     }
 }
+
+export const chonGheAction = (maGhe, giaVe) => {
+    return {
+        type: "CHON_GHE",
+        maGhe: maGhe,
+        giaVe: giaVe
+    }
+}
+
+export const resetGheDangChonAction = () => {
+    return {
+        type: "RESET_GHE"
+    }
+}
+
+export const hoanThanhDatGheAction = () => {
+    return {
+        type: "DAT_GHE_THANH_CONG"
+    }
+}
+
+export const datGheAction = (mangGheDangChon, maLichChieu) => {
+    return (dispatch2) => {
+        
+        if(mangGheDangChon.length > 0 && maLichChieu !== 0){
+          console.log("Book");
+          let datVe = {
+            maLichChieu: maLichChieu,
+            danhSachVe: mangGheDangChon
+          }
+            let promise = axios({
+              method: "POST",
+              url: "https://movienew.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+              data: datVe,
+              headers: {
+                'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlcjA3MDIyMDIzbG9naW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJBQkJCQUFAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIktoYWNoSGFuZyIsIkFCQkJBQUBnbWFpbC5jb20iLCJHUDAwIl0sIm5iZiI6MTY3NjgxMzE5MCwiZXhwIjoxNjc2ODE2NzkwfQ.WPlmnSmsU99E6r3l2IObvp1edQ_bSJIjUHIt6XITspE",
+                'TokenCybersoft' : token
+              }
+            })
+            promise.then((result) => { 
+                let action = hoanThanhDatGheAction()
+               dispatch2(action)
+          
+             })
+             promise.catch((error) => { 
+              console.log(error)
+              })
+             
+        }
+    }
+}
