@@ -34,7 +34,6 @@ export default function AdminTemplate(props) {
         }
     }
 
- 
     if (userLogin.maLoaiNguoiDung === quanTri) {
         return (
             <Route exact path={props.path} render={(propsRoute) => {
@@ -102,7 +101,6 @@ export default function AdminTemplate(props) {
 
             </Route>
         )
-
     } else {
         return (
             <h2>Bạn không có quyền vào trang này</h2>

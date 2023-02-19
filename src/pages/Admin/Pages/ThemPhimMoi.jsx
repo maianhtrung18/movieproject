@@ -3,9 +3,6 @@ import Switch from "react-switch";
 import DatePicker from "react-datepicker";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
-import axios from 'axios';
-
 import "react-datepicker/dist/react-datepicker.css";
 import { maNhom } from '../../../types/globalConst';
 import { uploadPhimAPI } from '../../../API/api';
@@ -20,10 +17,6 @@ export default function ThemPhimMoi() {
     })
     let [showFile, setShowFile] = useState()
     const [startDate, setStartDate] = useState(new Date());
-
-    let startDay = new Date()
-
-    // `${startDay.getDate()}/${startDay.getMonth()}/${startDay.getFullYear()}`,
 
     const formik = useFormik({
         initialValues: {
@@ -51,9 +44,9 @@ export default function ThemPhimMoi() {
             formData.append('tenPhim', values.tenPhim)
             formData.append('moTa', values.moTa)
             formData.append('ngayKhoiChieu', startDate)
-            formData.append('sapChieu', values.sapChieu)
-            formData.append('dangChieu', values.dangChieu)
-            formData.append('hot', values.hot)
+            formData.append('sapChieu', sapChieuState)
+            formData.append('dangChieu', dangChieuState)
+            formData.append('hot', hotState)
             formData.append('danhGia', values.danhGia)
             formData.append('maNhom', values.maNhom)
             formData.append('File', file.selectedFile)
@@ -67,9 +60,7 @@ export default function ThemPhimMoi() {
 
     return (
         <div className='themMoiPhimContainer'>
-
             <h2>Thêm mới phim</h2>
-
             <form onSubmit={formik.handleSubmit}>
                 <div className='form-group'>
                     <div className="form_NewFilm">
@@ -92,7 +83,6 @@ export default function ThemPhimMoi() {
                         <div>{formik.errors.trailer}</div>
                     ) : null}
                 </div>
-
 
                 <div className='form-group'>
                     <div className="form_NewFilm">
@@ -147,17 +137,13 @@ export default function ThemPhimMoi() {
                         setShowFile(URL.createObjectURL(event.target.files[0]))
                         setFile({ selectedFile: event.target.files[0] })
                     }
-
                     } type="file" name='hinhAnh' />
-
                 </div>
                 <div className="form-group form_NewFilm">
                     <img src={showFile} alt="" style={{ height: '200px' }} />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
-
-
         </div>
     )
 }
