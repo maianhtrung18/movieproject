@@ -57,8 +57,8 @@ export default function AdminTemplate(props) {
                                 }} />}
                                 <UserName userLogin={userLogin} />
                             </Header>
-                            <Content>
-                                <div style={{overflow:'scroll'}}>
+                            <Content style={{overflow: 'scroll'}}>
+                                <div>
                                     <props.component {...propsRoute.component} />
                                 </div>
                             </Content>

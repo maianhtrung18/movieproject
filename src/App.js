@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import ChiTietPhim from './pages/MovieDetail/ChiTietPhim';
 import AdminTemplate from './templates/AdminTemplate';
 import QuanLyPhim from './pages/Admin/Pages/QuanLyPhim';
+import ThemPhimMoi from './pages/Admin/Pages/ThemPhimMoi';
 export const history = createBrowserHistory();
 
 
@@ -34,6 +35,7 @@ function App() {
           <ChiTietPhim />
         </Route>
         <AdminTemplate path='/quanlyphim' component={QuanLyPhim}/>
+        <AdminTemplate path='/addnew' component={ThemPhimMoi}/>
       </Switch>
     </Router>
   );

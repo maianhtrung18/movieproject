@@ -387,3 +387,16 @@ body {
 .quanLyPhim {
   padding: 20px;
 }
+
+.themMoiPhimContainer {
+  padding: 20px;
+}
+
+.form_NewFilm {
+  display: flex;
+  align-items: center;
+}
+.form_NewFilm label {
+  margin: 0px;
+  width: 80px;
+}

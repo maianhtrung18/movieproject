@@ -52,3 +52,17 @@ export const dangNhapAPI = (thongTinUser) => {
         }
     });
 }
+
+export const xoaPhimAPI = (maphim, tokenAdmin) => {
+    return axios({
+        method: 'delete',
+        url: `${process.env.REACT_APP_DOMAIN}/api/QuanLyPhim/XoaPhim`,
+        headers: {
+            TokenCybersoft: token,
+            Authorization: `bearer ${tokenAdmin}`
+        },
+         params: {
+            MaPhim: maphim
+        },
+    });
+}
