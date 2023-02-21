@@ -33,6 +33,13 @@ function App() {
           <ThongTinRap />
           <Footer />
         </Route>
+         <Route exact path='/'>
+          <Header />
+          <Carousel />
+          <MovieList />
+          <ThongTinRap />
+          <Footer />
+        </Route>
         <Route exact path='/chitietphim/:maphim'>
           <Header />
           <ChiTietPhim />
