@@ -16,12 +16,13 @@ import AdminTemplate from './templates/AdminTemplate';
 import QuanLyPhim from './pages/Admin/Pages/QuanLyPhim';
 import ThemPhimMoi from './pages/Admin/Pages/ThemPhimMoi';
 import TaoLichChieu from './pages/Admin/Pages/TaoLichChieu';
+import EditPhim from './pages/Admin/Pages/EditPhim';
 export const history = createBrowserHistory();
 
 
 function App() {
   return (
-    
+
     <Router history={history}>
       <Switch>
         <FormTemplate path='/registers' component={Registers} />
@@ -33,14 +34,22 @@ function App() {
           <ThongTinRap />
           <Footer />
         </Route>
-          <Route exact path='/chitietphim/:maphim'>
-            <Header/>
-            <ChiTietPhim/>
-          </Route>
-        <AdminTemplate path='/quanlyphim' component={QuanLyPhim}/>
-        <AdminTemplate path='/addnew' component={ThemPhimMoi}/>
+         <Route exact path='/'>
+          <Header />
+          <Carousel />
+          <MovieList />
+          <ThongTinRap />
+          <Footer />
+        </Route>
+        <Route exact path='/chitietphim/:maphim'>
+          <Header />
+          <ChiTietPhim />
+        </Route>
+        <AdminTemplate path='/quanlyphim' component={QuanLyPhim} />
+        <AdminTemplate path='/addnew' component={ThemPhimMoi} />
+        <AdminTemplate path='/edit/:maphim' component={EditPhim} />
         <AdminTemplate path='/showtime/:maphim' component={TaoLichChieu}/>
-         <Route exact path='/chitietphongve/:malichchieu' component={ChiTietPhongVe}/> 
+        <Route exact path='/chitietphongve/:malichchieu' component={ChiTietPhongVe} />
 
       </Switch>
     </Router>

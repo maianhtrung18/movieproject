@@ -22,7 +22,7 @@ export default function ChiTietPhim() {
     getMovieDetail();
     setTimeout(() => {
       setIsLoading(false)
-      console.log("setTimeout")
+      // console.log("setTimeout")
     }, 1000);
   }, []);
 

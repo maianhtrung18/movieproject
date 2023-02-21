@@ -95,7 +95,18 @@ export const taoLichChieuAPI = (data, accessToken) => {
         data: data,
         headers: { 
             'TokenCybersoft': token,
-            'Authorization': `Bearer ${accessToken}`
+            'Authorization': `Bearer ${accessToken}` }
+        })
+    }
+    
+export const updatePhimAPI = (data, tokenAdmin) => {
+    return axios({
+        method: 'post',
+        url: `${process.env.REACT_APP_DOMAIN}/api/QuanLyPhim/CapNhatPhimUpload`,
+        data: data,
+        headers: {
+            TokenCybersoft: token,
+            Authorization: `bearer ${tokenAdmin}`
         }
     });
 }
