@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-
 import { Table } from 'antd';
 import { danhSachPhimAPI, xoaPhimAPI } from '../../../API/api';
 import { history } from '../../../App';
+import { EditOutlined, DeleteOutlined, CalendarOutlined } from '@ant-design/icons';
 import { SELECT_EDIT_PHIM, TOKEN } from '../../../ulti/setting';
 import { useDispatch } from 'react-redux';
 import { maNhom } from '../../../types/globalConst';
@@ -64,7 +64,7 @@ export default function QuanLyPhim() {
             title: 'Hành động',
             dataIndex: 'maPhim',
             render: (maPhim) => <>
-                <button onClick={() => {
+               <button className='quanLyPhim__button' onClick={() => {
                     let phim = listPhim.find((phim) => {
                         return phim.maPhim === maPhim
                     })
@@ -87,10 +87,14 @@ export default function QuanLyPhim() {
                     // console.log(action)
                     dispatch(action)
                     history.push(`/edit/${maPhim}`)
-                }}>edit</button>
-                <button onClick={() => {
+                }}><EditOutlined/></button>
+                <button className='quanLyPhim__button' onClick={() => {
                     xoaPhim(maPhim)
-                }}>dele</button></>
+                }}><DeleteOutlined/></button>
+                <button className='quanLyPhim__button' onClick={() => { 
+                    history.push(`./showtime/${maPhim}`)
+                 }}><CalendarOutlined/></button>
+                </>
         },
     ];
     const onChange = (pagination, filters, sorter, extra) => {

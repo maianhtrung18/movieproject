@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import { history } from '../../App'
 
 export default function LichChieuPhim(props) {
 
   let [heThongRapChieu, setHeThongRapChieu] = useState([])
   let [cumRapChieu, setCumRapChieu] = useState([])
   let [heThongRapActive, setHeThongRapActice] = useState("")
-
+ 
 
   useEffect(() => {
       if(props.movieDetail.heThongRapChieu){
@@ -68,9 +68,12 @@ export default function LichChieuPhim(props) {
       return lichChieuPhimArray.map((lichChieuPhim) => { 
         let ngayGioChieuPhim = new Date (lichChieuPhim.ngayChieuGioChieu)
         let gioChieuPhim = addZeroToTime(ngayGioChieuPhim.getHours()) + ":" + addZeroToTime(ngayGioChieuPhim.getMinutes())
-        return  <Link to={`/chitietphongve/${lichChieuPhim.maLichChieu}`}>
-                {gioChieuPhim}
-                 </Link>
+        return  <span onClick={() => {
+          history.push(`/chitietphongve/${lichChieuPhim.maLichChieu}`)
+        }}> {gioChieuPhim}</span>
+        // <Link  to={`/chitietphongve/${lichChieuPhim.maLichChieu}`} data-dismiss="modal">
+        //         {gioChieuPhim}
+        //          </Link>
        })
     }
     
