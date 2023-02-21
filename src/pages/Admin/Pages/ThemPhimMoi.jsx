@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { maNhom } from '../../../types/globalConst';
 import { uploadPhimAPI } from '../../../API/api';
 import { TOKEN } from '../../../ulti/setting';
+import { history } from '../../../App';
 export default function ThemPhimMoi() {
 
     let [dangChieuState, setDangChieu] = useState(false)
@@ -56,6 +57,8 @@ export default function ThemPhimMoi() {
             console.log(formData)
             themPhim.then((result) => {
                 console.log(result)
+                alert('Thêm phim mới thành công')
+                history.push('/quanlyphim')
             }).catch((error) => {
                 console.log(error)
             })

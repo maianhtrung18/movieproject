@@ -9,6 +9,7 @@ import { updatePhimAPI, uploadPhimAPI } from '../../../API/api';
 import { TOKEN } from '../../../ulti/setting';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { history } from '../../../App';
 export default function EditPhim() {
 
     let phim = useSelector(state => state.phimReducer)
@@ -50,6 +51,7 @@ export default function EditPhim() {
             let formData = new FormData();
             formData.append('maPhim', maPhim.maphim)
             formData.append('tenPhim', phimState.tenPhim)
+            formData.append('trailer', phimState.trailer)
             formData.append('moTa', phimState.moTa)
             formData.append('ngayKhoiChieu', phimState.ngayKhoiChieu)
             formData.append('sapChieu', phimState.sapChieu)
@@ -64,6 +66,9 @@ export default function EditPhim() {
             let themPhim = updatePhimAPI(formData, adminToken)
             themPhim.then((result) => {
                 console.log(result)
+                alert('Update thành công')
+                history.push('/quanlyphim')
+                history.go(0)
             }).catch((error) => {
                 console.log(error)
             })
