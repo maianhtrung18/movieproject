@@ -51,18 +51,21 @@ export default function TaoLichChieu() {
             ngayChieuGioChieu: values.ngayChieuGioChieu,
             giaVe: values.giaVe
         }
-        console.log(lichChieu);
-    if(localStorage.getItem(TOKEN)){
-         accessToken = localStorage.getItem(TOKEN)  
-}
-    let promise = taoLichChieuAPI(lichChieu,accessToken)
-    promise.then((result) => { 
-        console.log(result);
-        alert("Tạo lịch chiếu thành công!")
-     })
-     .catch((error) => { 
-        console.log(error);
-      })
+    if(lichChieu.giaVe < 75000 || lichChieu.giaVe > 90000){
+        alert("Tạo lịch không thành công, giá vé phải từ 75.000 -> 90.000")
+    } else{
+        if(localStorage.getItem(TOKEN)){
+            accessToken = localStorage.getItem(TOKEN)  
+   }
+       let promise = taoLichChieuAPI(lichChieu,accessToken)
+       promise.then((result) => { 
+           console.log(result);
+           alert("Tạo lịch chiếu thành công!")
+        })
+        .catch((error) => { 
+           console.log(error);
+         })
+    }   
     }
 
     const getThongTinHeThongRap = () => {
