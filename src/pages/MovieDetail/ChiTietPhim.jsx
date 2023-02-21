@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getMovieDetailAction } from '../../redux/action/movieAction';
 import LichChieuPhim from './LichChieuPhim';
+import LichChieuPhimModal from './LichChieuPhimModal';
 import ThongTinPhim from './ThongTinPhim';
 
 
 export default function ChiTietPhim() {
   let { maphim } = useParams();
   let [isLoading, setIsLoading] = useState(true)
+
 
   let movieDetail = useSelector(state => state.movieReducer.movieDetail)
   let dispatch = useDispatch();
@@ -42,6 +44,7 @@ export default function ChiTietPhim() {
       <h2 className='movieName__detail'>{movieDetail.tenPhim}</h2>
       <ThongTinPhim />
       <LichChieuPhim movieDetail={movieDetail} />
+   
     </div>
   }
 

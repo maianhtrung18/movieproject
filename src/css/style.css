@@ -339,7 +339,7 @@ body {
   cursor: pointer;
 }
 
-.movieDetail__tableCinema .active {
+.movieDetail__tableCinema .active, .movieDetail__tableCinema tr:hover{
   opacity: 1;
 }
 
@@ -351,13 +351,22 @@ body {
   /* width: 100%; */
 }
 
-.movieDetail__tableBooking a {
+.movieDetail__tableBooking span {
   display: inline-block;
   margin-right: 10px;
   text-decoration: none;
   color: #ff9800;
   font-weight: bold;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all .2s;
+  animation: changeColor 2s linear infinite;
 }
+
+.movieDetail__tableBooking span:hover{
+  font-size: 28px;
+  color: #ff4800;
+} 
 
 .movieDetail__tableBooking td {
   padding-left: 20px;
@@ -753,4 +762,34 @@ body {
 .form_NewFilm label {
   margin: 0px;
   width: 80px;
+}
+
+.ant-modal .ant-modal-content {
+  background: rgba( 200, 200, 200, 0.5 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 16px );
+
+}
+.ant-modal-content h6,.ant-modal-content p, .ant-modal-content td{
+  color: #000;
+}
+.ant-modal .ant-modal-header{
+  background-color: transparent;
+}
+
+.ant-modal .ant-modal-title{
+  font-size: 26px;
+}
+
+@keyframes changeColor {
+  0% {
+    color: #ff9800;
+  }
+  50% {
+    color: #ff4800;
+  }
+  100% {
+    color: #ff9800;
+  }
 }

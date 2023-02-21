@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import 'react-notifications/lib/notifications.css';
-import { NotificationContainer, NotificationManager } from 'react-notifications';
 import TrailerModal from './TrailerModal';
+import LichChieuPhimModal from './LichChieuPhimModal';
 
 export default function ThongTinPhim(props) {
 
   let [playingVideo, setPlayingVideo] = useState(false)
   let movieDetail = useSelector(state => state.movieReducer.movieDetail)
+  let [open, setOpen] = useState(false);
 
   let renderNgayKhoiChieu = () => {
     let ngayGioKhoiChieu = new Date(movieDetail.ngayKhoiChieu)
@@ -15,38 +16,6 @@ export default function ThongTinPhim(props) {
     return ngayKhoiChieu;
   }
 
-
-  const createNotification = (type) => {
-    return () => {
-      switch (type) {
-        case 'info':
-          NotificationManager.info('Vui lòng chọn giờ xem phim bên dưới', 'Vui lòng chọn giờ xem phim bên dưới', 6000);
-          break;
-        case 'success':
-          NotificationManager.success('Success message', 'Title here');
-          break;
-        case 'warning':
-          NotificationManager.warning('Vui lòng chọn giờ xem phim bên dưới', 'Vui lòng chọn giờ xem phim bên dưới', 3000);
-          break;
-        case 'error':
-          NotificationManager.error('Phim hiện tại chưa có giờ chiếu!','BOOKING NOT SUCCESS!', 3000, () => {
-            alert('callback');
-          });
-          break;
-        default:
-          break;
-      }
-    };
-  };
-
-  const createNotify = () => {
-    if(movieDetail.heThongRapChieu){
-      if(movieDetail.heThongRapChieu.length > 0){
-        return createNotification('warning')
-      }
-    }
-    return createNotification('error')
-  }
 
   return (
     <div className="row">
@@ -74,13 +43,15 @@ export default function ThongTinPhim(props) {
           setPlayingVideo(true)
         }} className='btn__detail btn__trailer' data-toggle="modal" data-target="#exampleModal">Trailer</button>
 
-        <a href='#bookingTable' onClick={createNotify()} className='btn__detail btn__detailBooking'>
+        <button onClick={() => {
+            setOpen(true);
+        }} className='btn__detail btn__detailBooking'>
           <i className="fa-solid fa-angle-down text-white"></i>
           <span className='text-white'> Book Now!</span>
-        </a>
+        </button>
       </div>
       <TrailerModal playingVideo={playingVideo} setPlayingVideo={setPlayingVideo} />
-      <NotificationContainer />
+      <LichChieuPhimModal movieDetail={movieDetail} open={open} setOpen={setOpen}/>
     </div>
   )
 }
