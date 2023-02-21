@@ -34,7 +34,7 @@ export default function AdminTemplate(props) {
         }
     }
 
-    if (userLogin.maLoaiNguoiDung === quanTri) {
+    if (userLogin? userLogin.maLoaiNguoiDung === quanTri : false) {
         return (
             <Route exact path={props.path} render={(propsRoute) => {
                 return <>

@@ -3,13 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { Table } from 'antd';
 import { danhSachPhimAPI, xoaPhimAPI } from '../../../API/api';
 import { history } from '../../../App';
-import { TOKEN } from '../../../ulti/setting';
+import { SELECT_EDIT_PHIM, TOKEN } from '../../../ulti/setting';
+import { useDispatch } from 'react-redux';
+import { maNhom } from '../../../types/globalConst';
 
 export default function QuanLyPhim() {
     let arrDanhSachPhim = []
     let danhSachPhim = danhSachPhimAPI()
-    
     let [listPhim, setListPhim] = useState([])
+    let dispatch = useDispatch()
 
     useEffect(() => {
         getDanhSachPhim()
@@ -42,9 +44,9 @@ export default function QuanLyPhim() {
             title: 'Hình ảnh',
             dataIndex: 'hinhAnh',
             defaultSortOrder: 'descend',
-            render: (hinhAnh) => 
-                <><img style={{width: '48px'}} src={hinhAnh} alt="" /></>
-            
+            render: (hinhAnh) =>
+                <><img style={{ width: '48px' }} src={hinhAnh} alt="" /></>
+
         },
         {
             title: 'Tên phim',
@@ -62,7 +64,30 @@ export default function QuanLyPhim() {
             title: 'Hành động',
             dataIndex: 'maPhim',
             render: (maPhim) => <>
-                <button>edit</button>
+                <button onClick={() => {
+                    let phim = listPhim.find((phim) => {
+                        return phim.maPhim === maPhim
+                    })
+                    // console.log(phim)
+                    let action = {
+                        type: SELECT_EDIT_PHIM,
+                        data: {
+                            tenPhim: phim.tenPhim,
+                            trailer: phim.trailer,
+                            moTa: phim.moTa,
+                            maNhom: maNhom,
+                            ngayKhoiChieu: phim.ngayKhoiChieu,
+                            sapChieu: phim.sapChieu,
+                            dangChieu: phim.dangChieu,
+                            hot: phim.hot,
+                            danhGia: phim.danhGia,
+                            hinhAnh: phim.hinhAnh
+                        }
+                    }
+                    // console.log(action)
+                    dispatch(action)
+                    history.push(`/edit/${maPhim}`)
+                }}>edit</button>
                 <button onClick={() => {
                     xoaPhim(maPhim)
                 }}>dele</button></>
@@ -80,12 +105,12 @@ export default function QuanLyPhim() {
             <h2>Quản Lý Phim</h2>
             <button onClick={() => {
                 history.push('/addnew')
-            }}className='btn btn-success'>Thêm Phim</button>
+            }} className='btn btn-success'>Thêm Phim</button>
             <form style={{ display: "flex" }}>
                 <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
                 <button className="btn btn-outline-success" type="button">Search</button>
             </form>
-            <Table columns={columns} dataSource={listPhim} onChange={onChange}/>
+            <Table columns={columns} dataSource={listPhim} onChange={onChange} />
         </div>
     )
 }
