@@ -782,6 +782,18 @@ body {
   font-size: 26px;
 }
 
+.taoLichChieu__formTable td{
+  padding: 10px
+}
+
+.quanLyPhim__button{
+  background-color: transparent;
+  border: none;
+ 
+  padding: 5px;
+}
+
+
 @keyframes changeColor {
   0% {
     color: #ff9800;

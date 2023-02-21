@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-
 import { Table } from 'antd';
 import { danhSachPhimAPI, xoaPhimAPI } from '../../../API/api';
 import { history } from '../../../App';
 import { TOKEN } from '../../../ulti/setting';
+import { EditOutlined, DeleteOutlined, CalendarOutlined } from '@ant-design/icons';
 
 export default function QuanLyPhim() {
     let arrDanhSachPhim = []
@@ -62,10 +62,14 @@ export default function QuanLyPhim() {
             title: 'Hành động',
             dataIndex: 'maPhim',
             render: (maPhim) => <>
-                <button>edit</button>
-                <button onClick={() => {
+                <button className='quanLyPhim__button'><EditOutlined/></button>
+                <button className='quanLyPhim__button' onClick={() => {
                     xoaPhim(maPhim)
-                }}>dele</button></>
+                }}><DeleteOutlined/></button>
+                <button className='quanLyPhim__button' onClick={() => { 
+                    history.push(`./showtime/${maPhim}`)
+                 }}><CalendarOutlined/></button>
+                </>
         },
     ];
     const onChange = (pagination, filters, sorter, extra) => {

@@ -78,3 +78,24 @@ export const uploadPhimAPI = (data, tokenAdmin) => {
         }
     });
 }
+
+export const thongTinCumRapTheoHeThongAPI = (maHeThongRap) => {
+    return axios({
+        method: 'GET',
+        url: `${process.env.REACT_APP_DOMAIN}/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`,
+        headers: { 'TokenCybersoft': token }
+    });
+}
+
+
+export const taoLichChieuAPI = (data, accessToken) => {
+    return axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_DOMAIN}/api/QuanLyDatVe/TaoLichChieu`,
+        data: data,
+        headers: { 
+            'TokenCybersoft': token,
+            'Authorization': `Bearer ${accessToken}`
+        }
+    });
+}
