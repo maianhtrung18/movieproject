@@ -17,7 +17,6 @@ const initialState = {
 export const phimReducer = (state = initialState, action) => {
     switch (action.type) {
         case SELECT_EDIT_PHIM:
-            console.log('we',action.data)
             return {...action.data}
 
         default:

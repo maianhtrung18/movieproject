@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import "react-datepicker/dist/react-datepicker.css";
 import { maNhom } from '../../../types/globalConst';
-import { updatePhimAPI, uploadPhimAPI } from '../../../API/api';
+import { updatePhimAPI } from '../../../API/api';
 import { TOKEN } from '../../../ulti/setting';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -15,17 +15,11 @@ export default function EditPhim() {
     let phim = useSelector(state => state.phimReducer)
     let maPhim = useParams()
 
-    // let [dangChieuState, setDangChieu] = useState(phim.dangChieu)
-    // let [sapChieuState, setSapChieu] = useState(phim.sapChieu)
-    // let [hotState, setHot] = useState(phim.hot)
     let [file, setFile] = useState({
         selectedFile: null
     })
-    // let [showFile, setShowFile] = useState()
-    // const [startDate, setStartDate] = useState(new Date());
 
-    let [phimState, setPhimState] = useState(phim)
-    console.log('phimState', phimState)
+    let [phimState, setPhimState] = useState({...phim, ngayKhoiChieu: new Date(phim.ngayKhoiChieu)})
 
     const formik = useFormik({
         initialValues: {
@@ -46,26 +40,27 @@ export default function EditPhim() {
             moTa: Yup.string().required(),
         }),
         onSubmit: values => {
+
+
             let adminToken = localStorage.getItem(TOKEN)
-            console.log('ds',maPhim)
+            let day = `${(phimState.ngayKhoiChieu.getDate() <10 )? '0' + phimState.ngayKhoiChieu.getDate() : phimState.ngayKhoiChieu.getDate()}/${((phimState.ngayKhoiChieu.getMonth()+1)<10)? '0'+(phimState.ngayKhoiChieu.getMonth()+1) : (phimState.ngayKhoiChieu.getMonth()+1)}/${phimState.ngayKhoiChieu.getFullYear()}`
             let formData = new FormData();
             formData.append('maPhim', maPhim.maphim)
             formData.append('tenPhim', phimState.tenPhim)
             formData.append('trailer', phimState.trailer)
             formData.append('moTa', phimState.moTa)
-            formData.append('ngayKhoiChieu', phimState.ngayKhoiChieu)
+            formData.append('ngayKhoiChieu', day)
             formData.append('sapChieu', phimState.sapChieu)
             formData.append('dangChieu', phimState.dangChieu)
             formData.append('hot', phimState.hot)
             formData.append('danhGia', phimState.danhGia)
             formData.append('maNhom', phimState.maNhom)
             formData.append('File', file.selectedFile)
-            // updatePhimAPI
-            // console.log('1234',{...formData})
-            console.log(phimState)
+            // console.log('123',{...phimState})
+            // console.log('456',file.selectedFile)
+            console.log('gh',...formData)
             let themPhim = updatePhimAPI(formData, adminToken)
             themPhim.then((result) => {
-                console.log(result)
                 alert('Update thành công')
                 history.push('/quanlyphim')
                 history.go(0)
@@ -77,8 +72,7 @@ export default function EditPhim() {
 
     let handleChange = (event) => {
         formik.handleChange(event)
-
-        setPhimState({...phimState, [[event.target.name]]: event.target.value})
+        setPhimState({ ...phimState, [[event.target.name]]: event.target.value })
     }
 
     return (
@@ -88,7 +82,7 @@ export default function EditPhim() {
                 <div className='form-group'>
                     <div className="form_NewFilm">
                         <label>Tên phim</label>
-                        <input type="text" className="form-control" name='tenPhim' onChange={handleChange} value={phimState.tenPhim}/>
+                        <input type="text" className="form-control" name='tenPhim' onChange={handleChange} value={phimState.tenPhim} />
                     </div>
                     {formik.touched.tenPhim && formik.errors.tenPhim ? (
                         <div>{formik.errors.tenPhim}</div>
@@ -97,7 +91,7 @@ export default function EditPhim() {
                 <div className='form-group'>
                     <div className="form_NewFilm">
                         <label>Trailer</label>
-                        <input type="text" className="form-control" name='trailer' onChange={handleChange} value={phimState.trailer}/>
+                        <input type="text" className="form-control" name='trailer' onChange={handleChange} value={phimState.trailer} />
 
                     </div>
                     {formik.touched.trailer && formik.errors.trailer ? (
@@ -107,7 +101,7 @@ export default function EditPhim() {
                 <div className='form-group'>
                     <div className="form_NewFilm">
                         <label>Mô tả</label>
-                        <input type="text" className="form-control" name='moTa' onChange={handleChange} value={phimState.moTa}/>
+                        <input type="text" className="form-control" name='moTa' onChange={handleChange} value={phimState.moTa} />
                     </div>
                     {formik.touched.moTa && formik.errors.moTa ? (
                         <div>{formik.errors.moTa}</div>
@@ -117,7 +111,12 @@ export default function EditPhim() {
                     <label>Ngày khởi chiếu</label>
                     <DatePicker dateFormat='dd/MM/yyyy' name='ngayKhoiChieu' selected={new Date(phimState.ngayKhoiChieu)} onChange={
                         (date) => {
-                            setPhimState({...phimState, ngayKhoiChieu: date})
+                            // console.log('phimState: ', `${date.getDate()}/${(date.getMonth()<10)? 0+date.getMonth():date.getMonth()}/${date.getFullYear()}`)
+                            // let ngayChieu = `${date.getDate()}/${(date.getMonth()<10)? 0+date.getMonth():date.getMonth()}/${date.getFullYear()}`
+                            setPhimState({ ...phimState, ngayKhoiChieu: date })
+
+                            
+                            // console.log(typeof (phimState.ngayKhoiChieu))
                         }
                     } className="form-control" />
                     {formik.touched.ngayKhoiChieu && formik.errors.ngayKhoiChieu ? (
@@ -127,7 +126,7 @@ export default function EditPhim() {
                 <div className="form-group form_NewFilm">
                     <label>Đang chiếu</label>
                     <Switch onChange={() => {
-                        setPhimState(phimState.dangChieu? {...phimState, dangChieu: false} : {...phimState, dangChieu:true})
+                        setPhimState(phimState.dangChieu ? { ...phimState, dangChieu: false } : { ...phimState, dangChieu: true })
                         // console.log(phimState)
                         // setDangChieu(dangChieuState ? false : true)
 
@@ -136,7 +135,7 @@ export default function EditPhim() {
                 <div className="form-group form_NewFilm">
                     <label>Sắp chiếu</label>
                     <Switch onChange={() => {
-                         setPhimState(phimState.sapChieu? {...phimState, sapChieu: false} : {...phimState, sapChieu:true})
+                        setPhimState(phimState.sapChieu ? { ...phimState, sapChieu: false } : { ...phimState, sapChieu: true })
                         // setSapChieu(sapChieuState ? false : true)
                     }} checked={phimState.sapChieu} />
                 </div>
@@ -144,7 +143,7 @@ export default function EditPhim() {
                     <label>Hot</label>
                     <Switch onChange={() => {
                         // setHot(hotState ? false : true)
-                         setPhimState(phimState.hot? {...phimState, hot: false} : {...phimState, hot:true})
+                        setPhimState(phimState.hot ? { ...phimState, hot: false } : { ...phimState, hot: true })
                     }} checked={phimState.hot} />
                 </div>
                 <div className="form-group form_NewFilm">
@@ -158,7 +157,7 @@ export default function EditPhim() {
                     <label>Hình ảnh</label>
                     <input onChange={(event) => {
                         // setShowFile(URL.createObjectURL(event.target.files[0]))
-                        setPhimState({...phimState, hinhAnh: `${URL.createObjectURL(event.target.files[0])}`})
+                        setPhimState({ ...phimState, hinhAnh: `${URL.createObjectURL(event.target.files[0])}` })
                         setFile({ selectedFile: event.target.files[0] })
                         // console.log('file',event.target.files[0])
                     }
@@ -172,3 +171,5 @@ export default function EditPhim() {
         </div>
     )
 }
+
+
