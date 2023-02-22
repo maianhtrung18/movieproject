@@ -18,11 +18,9 @@ export default function ChiTietPhim() {
   let dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("CallAPI");
     getMovieDetail();
     setTimeout(() => {
       setIsLoading(false)
-      // console.log("setTimeout")
     }, 1000);
   }, []);
 
@@ -47,8 +45,6 @@ export default function ChiTietPhim() {
    
     </div>
   }
-
-console.log(maphim);
 
   return (
     <div>

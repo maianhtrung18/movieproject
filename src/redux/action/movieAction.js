@@ -37,13 +37,10 @@ export const getTicketsRoomAction = (malichchieu) => {
             }
           })
           promise.then((result) => { 
-              console.log(result.data.content)
-              
               let action = {
                 type: "GET_TICKETS_ROOM",
                 ticketsRoom: result.data.content
               }
-
               dispatch2(action)
            });
            promise.catch((error) => { 
@@ -76,7 +73,6 @@ export const datGheAction = (mangGheDangChon, maLichChieu) => {
     return (dispatch2) => {
         
         if(mangGheDangChon.length > 0 && maLichChieu !== 0){
-          console.log("Book");
           let datVe = {
             maLichChieu: maLichChieu,
             danhSachVe: mangGheDangChon
@@ -98,7 +94,6 @@ export const datGheAction = (mangGheDangChon, maLichChieu) => {
              promise.catch((error) => { 
               console.log(error)
               })
-             
         }
     }
 }

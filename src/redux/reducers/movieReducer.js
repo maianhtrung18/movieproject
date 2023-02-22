@@ -31,8 +31,6 @@ export const movieReducer = (state = initialState, action) => {
         }
         state.mangGheDangChon = [...state.mangGheDangChon, gheChon]
       }
-
-      console.log(state.mangGheDangChon)
       return { ...state }
 
     case "DAT_GHE_THANH_CONG":

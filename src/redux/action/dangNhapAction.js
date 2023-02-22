@@ -13,7 +13,6 @@ export const dangNhapAction = (thongTinUser) => {
             let userJson = JSON.stringify(result.data.content)
             localStorage.setItem(userMovie, userJson)
 
-            console.log()
             if (result.data.content.maLoaiNguoiDung === quanTri) {
                 history.push('/quanlyphim')
             } else {

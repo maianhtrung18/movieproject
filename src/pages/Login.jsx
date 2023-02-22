@@ -18,7 +18,6 @@ export default function Login() {
       matKhau: Yup.string().required('Mật khẩu không được để trống')
     }),
     onSubmit: values => {
-      // console.log(values)
       let action = dangNhapAction(values)
       dispatch(action)
     },
@@ -39,7 +38,6 @@ export default function Login() {
           <label>Mật khẩu</label>
           <input onChange={formik.handleChange}
             value={formik.values.matKhau} type="password" className="form-control" id="matKhau" />
-
             {formik.touched.matKhau && formik.errors.matKhau ? (
             <div>{formik.errors.matKhau}</div>
           ) : null}

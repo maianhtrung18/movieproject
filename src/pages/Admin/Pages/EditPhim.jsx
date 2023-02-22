@@ -74,6 +74,9 @@ export default function EditPhim() {
 
     return (
         <div className='themMoiPhimContainer'>
+            <button onClick={() => {
+                history.goBack()
+            }} className='btn btn-success'>Back</button>
             <h2>Chỉnh sửa phim</h2>
             <form onSubmit={formik.handleSubmit}>
                 <div className='form-group'>
@@ -108,12 +111,7 @@ export default function EditPhim() {
                     <label>Ngày khởi chiếu</label>
                     <DatePicker dateFormat='dd/MM/yyyy' name='ngayKhoiChieu' selected={new Date(phimState.ngayKhoiChieu)} onChange={
                         (date) => {
-                            // console.log('phimState: ', `${date.getDate()}/${(date.getMonth()<10)? 0+date.getMonth():date.getMonth()}/${date.getFullYear()}`)
-                            // let ngayChieu = `${date.getDate()}/${(date.getMonth()<10)? 0+date.getMonth():date.getMonth()}/${date.getFullYear()}`
                             setPhimState({ ...phimState, ngayKhoiChieu: date })
-
-                            
-                            // console.log(typeof (phimState.ngayKhoiChieu))
                         }
                     } className="form-control" />
                     {formik.touched.ngayKhoiChieu && formik.errors.ngayKhoiChieu ? (
@@ -124,8 +122,6 @@ export default function EditPhim() {
                     <label>Đang chiếu</label>
                     <Switch onChange={() => {
                         setPhimState(phimState.dangChieu ? { ...phimState, dangChieu: false } : { ...phimState, dangChieu: true })
-                        // console.log(phimState)
-                        // setDangChieu(dangChieuState ? false : true)
 
                     }} checked={phimState.dangChieu} />
                 </div>

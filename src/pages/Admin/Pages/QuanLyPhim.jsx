@@ -26,7 +26,6 @@ export default function QuanLyPhim() {
         danhSachPhim.then((result) => {
             arrDanhSachPhim.current = result.data.content
             renderDanhSachPhim()
-            // console.log(arrDanhSachPhim)
         }).catch((error) => {
             console.log(error)
         })
@@ -52,7 +51,6 @@ export default function QuanLyPhim() {
             defaultSortOrder: 'descend',
             render: (hinhAnh) =>
                 <><img style={{ width: '48px' }} src={hinhAnh} alt="" /></>
-
         },
         {
             title: 'Tên phim',
@@ -74,7 +72,6 @@ export default function QuanLyPhim() {
                     let phim = listPhim.find((phim) => {
                         return phim.maPhim === maPhim
                     })
-                    // console.log(phim)
                     let action = {
                         type: SELECT_EDIT_PHIM,
                         data: {
@@ -90,7 +87,6 @@ export default function QuanLyPhim() {
                             hinhAnh: phim.hinhAnh
                         }
                     }
-                    // console.log(action)
                     dispatch(action)
                     history.push(`/edit/${maPhim}`)
                 }}><EditOutlined /></button>
@@ -108,10 +104,7 @@ export default function QuanLyPhim() {
     };
 
     let renderDanhSachPhim = () => {
-        // let catchArr = useMemo(()=> {})
-        // arrDSPhim.current = arrDanhSachPhim
         setListPhim(arrDanhSachPhim.current)
-        // console.log(arrDanhSachPhim)
     }
     return (
         <div className='quanLyPhim'>

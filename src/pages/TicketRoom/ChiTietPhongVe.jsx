@@ -18,7 +18,6 @@ export default function ChiTietPhongVe() {
 
     setTimeout(() => {
       setIsLoading(false)
-      console.log("setTimeout")
     }, 1000);
 
     return () => {
