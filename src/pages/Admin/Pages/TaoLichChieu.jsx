@@ -17,6 +17,12 @@ export default function TaoLichChieu() {
         ngayChieuGioChieu: "",
         giaVe: ""
     })
+    let [errors, setErrors] = useState({
+        heThongRap: "",
+        maRap: "",
+        ngayChieuGioChieu: "",
+        giaVe: ""
+    })
 
 
     useEffect(() => {
@@ -39,33 +45,72 @@ export default function TaoLichChieu() {
             newValues[name] = moment(value).format('DD/MM/YYYY HH:mm:ss')
         }
 
+        let messageError = ""
+
+        let regexp = /^[0-9]*$/;
+        if(typeform == "giaVe"){
+            if(!regexp.test(value)){
+                messageError = `${name} phải là dạng số`
+            }
+            if(value < 75000 || value > 90000){
+                messageError = "Giá vé phải từ 75.000 -> 90.000"
+            } 
+        }
+
+        if(value.trim() === ""){
+            messageError = `${name} không được để trống`
+        }   
+
+        let newErrors = {...errors}
+        newErrors[name] = messageError;
+
+        setErrors(newErrors)
         setValues(newValues)
     }
 
     const handleOnSubmit = (event) => {
         event.preventDefault();
-        let accessToken =''
-        let lichChieu = {
-            maphim: maphim,
-            maRap: values.maRap,
-            ngayChieuGioChieu: values.ngayChieuGioChieu,
-            giaVe: values.giaVe
+
+        let valid = true;
+
+        for (const property in errors) {
+            if(errors[property] != ""){
+                valid = false;
+            }
         }
-    if(lichChieu.giaVe < 75000 || lichChieu.giaVe > 90000){
-        alert("Tạo lịch không thành công, giá vé phải từ 75.000 -> 90.000")
-    } else{
-        if(localStorage.getItem(TOKEN)){
-            accessToken = localStorage.getItem(TOKEN)  
-   }
-       let promise = taoLichChieuAPI(lichChieu,accessToken)
-       promise.then((result) => { 
-           console.log(result);
-           alert("Tạo lịch chiếu thành công!")
-        })
-        .catch((error) => { 
-           console.log(error);
-         })
-    }   
+
+        for (const property in values) {
+            if(values[property] == ""){
+                valid = false;
+            }
+        }
+
+        if(valid){
+            let accessToken =''
+            let lichChieu = {
+                maphim: maphim,
+                maRap: values.maRap,
+                ngayChieuGioChieu: values.ngayChieuGioChieu,
+                giaVe: values.giaVe
+            }
+       
+            if(localStorage.getItem(TOKEN)){
+                accessToken = localStorage.getItem(TOKEN)  
+       }
+           let promise = taoLichChieuAPI(lichChieu,accessToken)
+           promise.then((result) => { 
+               console.log(result);
+               alert("Tạo lịch chiếu thành công!")
+            })
+            .catch((error) => { 
+               console.log(error);
+             })
+        } else {
+            alert("Form không hợp lệ!")
+        }
+
+       
+       
     }
 
     const getThongTinHeThongRap = () => {
@@ -116,8 +161,8 @@ export default function TaoLichChieu() {
         })
     }
 
+    console.log(errors)
     console.log(values);
-    console.log(maphim)
     return (
         <div>
             <div className="container">
@@ -146,12 +191,14 @@ export default function TaoLichChieu() {
                                     <td>Ngày chiếu giờ chiếu</td>
                                     <td>
                                         <input className="form-control" typeform="ngayChieuGioChieu" onChange={handleOnChange} type="datetime-local" name='ngayChieuGioChieu' />
+                                        <p className='text-danger'>{errors.ngayChieuGioChieu}</p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Giá vé</td>
                                     <td>
-                                        <input className="form-control" onChange={handleOnChange} name="giaVe" type="text" placeholder='Giá vé' />
+                                        <input className="form-control" typeform="giaVe" onChange={handleOnChange} name="giaVe" type="text" placeholder='Giá vé' />
+                                        <p className='text-danger'>{errors.giaVe}</p>
                                     </td>
                                 </tr>
                                 <tr>
