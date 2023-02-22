@@ -40,8 +40,6 @@ export default function EditPhim() {
             moTa: Yup.string().required(),
         }),
         onSubmit: values => {
-
-
             let adminToken = localStorage.getItem(TOKEN)
             let day = `${(phimState.ngayKhoiChieu.getDate() <10 )? '0' + phimState.ngayKhoiChieu.getDate() : phimState.ngayKhoiChieu.getDate()}/${((phimState.ngayKhoiChieu.getMonth()+1)<10)? '0'+(phimState.ngayKhoiChieu.getMonth()+1) : (phimState.ngayKhoiChieu.getMonth()+1)}/${phimState.ngayKhoiChieu.getFullYear()}`
             let formData = new FormData();
@@ -56,8 +54,6 @@ export default function EditPhim() {
             formData.append('danhGia', phimState.danhGia)
             formData.append('maNhom', phimState.maNhom)
             formData.append('File', file.selectedFile)
-            // console.log('123',{...phimState})
-            // console.log('456',file.selectedFile)
             console.log('gh',...formData)
             let themPhim = updatePhimAPI(formData, adminToken)
             themPhim.then((result) => {
@@ -66,6 +62,7 @@ export default function EditPhim() {
                 history.go(0)
             }).catch((error) => {
                 console.log(error)
+                alert('Chỉnh sửa không thành công, chỉnh sửa ảnh phải thay đổi tên phim')
             })
         }
     })

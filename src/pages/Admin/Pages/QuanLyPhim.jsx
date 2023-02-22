@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Table } from 'antd';
 import { danhSachPhimAPI, xoaPhimAPI } from '../../../API/api';
 import { history } from '../../../App';
@@ -8,10 +8,15 @@ import { useDispatch } from 'react-redux';
 import { maNhom } from '../../../types/globalConst';
 
 export default function QuanLyPhim() {
-    let arrDanhSachPhim = []
+    let arrDanhSachPhim = useRef([])
     let danhSachPhim = danhSachPhimAPI()
     let [listPhim, setListPhim] = useState([])
     let dispatch = useDispatch()
+
+    let textSearch = useRef('')
+    // let arrDSPhim = useRef([])
+
+    // let catchArr = useMemo(() => arrDanhSachPhim,[])
 
     useEffect(() => {
         getDanhSachPhim()
@@ -19,8 +24,9 @@ export default function QuanLyPhim() {
 
     let getDanhSachPhim = () => {
         danhSachPhim.then((result) => {
-            arrDanhSachPhim = result.data.content
+            arrDanhSachPhim.current = result.data.content
             renderDanhSachPhim()
+            // console.log(arrDanhSachPhim)
         }).catch((error) => {
             console.log(error)
         })
@@ -64,7 +70,7 @@ export default function QuanLyPhim() {
             title: 'Hành động',
             dataIndex: 'maPhim',
             render: (maPhim) => <>
-               <button className='quanLyPhim__button' onClick={() => {
+                <button className='quanLyPhim__button' onClick={() => {
                     let phim = listPhim.find((phim) => {
                         return phim.maPhim === maPhim
                     })
@@ -87,14 +93,14 @@ export default function QuanLyPhim() {
                     // console.log(action)
                     dispatch(action)
                     history.push(`/edit/${maPhim}`)
-                }}><EditOutlined/></button>
+                }}><EditOutlined /></button>
                 <button className='quanLyPhim__button' onClick={() => {
                     xoaPhim(maPhim)
-                }}><DeleteOutlined/></button>
-                <button className='quanLyPhim__button' onClick={() => { 
+                }}><DeleteOutlined /></button>
+                <button className='quanLyPhim__button' onClick={() => {
                     history.push(`./showtime/${maPhim}`)
-                 }}><CalendarOutlined/></button>
-                </>
+                }}><CalendarOutlined /></button>
+            </>
         },
     ];
     const onChange = (pagination, filters, sorter, extra) => {
@@ -102,7 +108,10 @@ export default function QuanLyPhim() {
     };
 
     let renderDanhSachPhim = () => {
-        setListPhim(arrDanhSachPhim)
+        // let catchArr = useMemo(()=> {})
+        // arrDSPhim.current = arrDanhSachPhim
+        setListPhim(arrDanhSachPhim.current)
+        // console.log(arrDanhSachPhim)
     }
     return (
         <div className='quanLyPhim'>
@@ -110,9 +119,19 @@ export default function QuanLyPhim() {
             <button onClick={() => {
                 history.push('/addnew')
             }} className='btn btn-success'>Thêm Phim</button>
-            <form style={{ display: "flex" }}>
-                <input className="form-control" type="search" placeholder="Search" aria-label="Search" />
-                <button className="btn btn-outline-success" type="button">Search</button>
+            <form style={{ display: "flex" }} onSubmit={(event) => {
+                event.preventDefault()
+            }}>
+                <input onChange={(event) => {
+                    textSearch.current = event.target.value
+                }} className="form-control" type="search" placeholder="Search" aria-label="Search" />
+                <button onClick={() => {
+                    let listPhimSearch = arrDanhSachPhim.current.filter(phim => {
+                        return phim.tenPhim.toLowerCase().match(textSearch.current.toLowerCase())
+                    })
+                    setListPhim(listPhimSearch)
+
+                }} className="btn btn-outline-success" type="submit">Search</button>
             </form>
             <Table columns={columns} dataSource={listPhim} onChange={onChange} />
         </div>
