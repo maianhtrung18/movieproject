@@ -79,7 +79,7 @@ export default function ThongTinDatVe() {
       }
 
   return (
-    <div className="col-4 ticketRoom__detail">
+    <div className="col-12 col-lg-4 ticketRoom__detail">
     {renderTicketRoomDetails()}
       
     </div>
