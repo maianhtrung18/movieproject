@@ -25,7 +25,7 @@ export default function Header() {
                             <NavLink className="nav-link" to="#">Tin Tức</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="#">Ứng Dụng</NavLink>
+                            <NavLink className="nav-link" to="/quanlyphim">Trang quản trị</NavLink>
                         </li>
 
                     </ul>
