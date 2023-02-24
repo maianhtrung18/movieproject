@@ -5,10 +5,10 @@ import UserName from '../pages/Home/UserName'
 
 export default function Header() {
 
-    let {userLogin} = useSelector(state => state.loginReducer)
+    let { userLogin } = useSelector(state => state.loginReducer)
     return (
         <div className='header'>
-            <nav className="navbar navbar-expand-lg navbar-dark">     
+            <nav className="navbar navbar-expand-lg navbar-dark">
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon" />
                 </button>
@@ -26,12 +26,12 @@ export default function Header() {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="#">Ứng Dụng</NavLink>
                         </li>
-                       
+
                     </ul>
                 </div>
 
-               <UserName userLogin={userLogin}/>
-                
+                <UserName userLogin={userLogin} />
+
             </nav>
 
         </div>

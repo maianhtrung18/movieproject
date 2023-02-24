@@ -27,7 +27,7 @@ export default function HangGhe() {
                 cssGhe= 'gheDangChon'
             }
 
-          return <td>
+          return <td key={ghe.maGhe}>
             <button disabled={disabled} onClick={() => {
                 let action = chonGheAction(ghe.maGhe, ghe.giaVe)
                 dispatch(action)
@@ -57,7 +57,7 @@ export default function HangGhe() {
           }
         }
         return danhSachGheTheoHang.map((hangGheObj) => {
-          return <tr>
+          return <tr key={hangGheObj.hangGhe}>
             {renderGhe(hangGheObj.mangGhe)}
           </tr>
         })

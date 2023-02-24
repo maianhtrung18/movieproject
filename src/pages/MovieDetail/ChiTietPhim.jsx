@@ -38,7 +38,7 @@ export default function ChiTietPhim() {
       </div>
       </div>
     }
-    return <div className='container'>
+    return <div className='container pt-3'>
       <h2 className='movieName__detail'>{movieDetail.tenPhim}</h2>
       <ThongTinPhim />
       <LichChieuPhim movieDetail={movieDetail} />

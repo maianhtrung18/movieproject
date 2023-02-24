@@ -12,7 +12,6 @@ export const getMovieDetailAction = (maphim) => {
             }
         });
         promise.then((result) => { 
-            console.log(result.data.content)
 
             let action = {
                 type: "GET_MOVIE_DETAIL",

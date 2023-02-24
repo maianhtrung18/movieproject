@@ -5,7 +5,7 @@ import { datGheAction } from '../../redux/action/movieAction';
 
 export default function ThongTinDatVe() {
 
-    let { ticketsRoom, mangGheDangChon } = useSelector(state => state.movieReducer)
+    let {ticketsRoom,mangGheDangChon} = useSelector(state => state.movieReducer)
     let dispatch = useDispatch()
 
     const renderGheDangChon = () => {
@@ -42,7 +42,8 @@ export default function ThongTinDatVe() {
                       <tr>
                         <td colSpan={2} className="text-center">
                         <h4>{tenPhim}</h4>
-                          </td> </tr>
+                          </td>
+                          </tr>
                       <tr>
                         <td>Ngày chiếu giờ chiếu</td>
                         <td>{`${ngayChieu} - ${gioChieu}`}</td>

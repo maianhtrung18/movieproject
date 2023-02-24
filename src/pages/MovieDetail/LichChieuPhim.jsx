@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { history } from '../../App'
 
@@ -44,7 +45,7 @@ export default function LichChieuPhim(props) {
     
       const renderCumRapChieu = () => {
         return cumRapChieu.map((cumRap) => { 
-          return <>
+          return <Fragment key={cumRap.maCumRap}>
           <tr>
             <td>
               <img style={{width: "50px"}} className='img-fluid' src={cumRap.hinhAnh} alt="" />
@@ -60,7 +61,7 @@ export default function LichChieuPhim(props) {
            </td>
            <td> {renderLichChieu(cumRap.lichChieuPhim)}</td>
           </tr>
-          </>
+          </Fragment>
          })
       }
       
@@ -68,7 +69,7 @@ export default function LichChieuPhim(props) {
       return lichChieuPhimArray.map((lichChieuPhim) => { 
         let ngayGioChieuPhim = new Date (lichChieuPhim.ngayChieuGioChieu)
         let gioChieuPhim = addZeroToTime(ngayGioChieuPhim.getHours()) + ":" + addZeroToTime(ngayGioChieuPhim.getMinutes())
-        return  <span onClick={() => {
+        return  <span key={lichChieuPhim.maLichChieu} onClick={() => {
           history.push(`/chitietphongve/${lichChieuPhim.maLichChieu}`)
         }}> {gioChieuPhim}</span>
         // <Link  to={`/chitietphongve/${lichChieuPhim.maLichChieu}`} data-dismiss="modal">

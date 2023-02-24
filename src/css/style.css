@@ -242,8 +242,6 @@ body {
   padding-right: 20px;
 }
 
-.movieDetail_leftContent {
-}
 
 .btn__detail {
   margin: 10%;
@@ -278,7 +276,7 @@ body {
   min-height: max-content;
 }
 
-.btn__detail {
+.btn__detailContainer {
   position: absolute;
   bottom: 10px;
 }
