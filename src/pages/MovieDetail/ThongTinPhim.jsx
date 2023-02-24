@@ -39,16 +39,19 @@ export default function ThongTinPhim(props) {
             </tr>
           </tbody>
         </table>
+        <div className="btn__detailContainer">
         <button onClick={() => {
           setPlayingVideo(true)
-        }} className='btn__detail btn__trailer' data-toggle="modal" data-target="#exampleModal">Trailer</button>
+        }} className='btn__detail btn__trailer mx-0 mx-lg-2' data-toggle="modal" data-target="#exampleModal">Trailer</button>
 
         <button onClick={() => {
             setOpen(true);
-        }} className='btn__detail btn__detailBooking'>
+        }} className='btn__detail btn__detailBooking mx-0 mx-lg-2'>
           <i className="fa-solid fa-angle-down text-white"></i>
           <span className='text-white'> Book Now!</span>
         </button>
+        </div>
+      
       </div>
       <TrailerModal playingVideo={playingVideo} setPlayingVideo={setPlayingVideo} />
       <LichChieuPhimModal movieDetail={movieDetail} open={open} setOpen={setOpen}/>

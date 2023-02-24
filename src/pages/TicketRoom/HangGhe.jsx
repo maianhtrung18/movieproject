@@ -27,7 +27,7 @@ export default function HangGhe() {
                 cssGhe= 'gheDangChon'
             }
 
-          return <td>
+          return <td key={ghe.maGhe}>
             <button disabled={disabled} onClick={() => {
                 let action = chonGheAction(ghe.maGhe, ghe.giaVe)
                 dispatch(action)
@@ -57,14 +57,14 @@ export default function HangGhe() {
           }
         }
         return danhSachGheTheoHang.map((hangGheObj) => {
-          return <tr>
+          return <tr key={hangGheObj.hangGhe}>
             {renderGhe(hangGheObj.mangGhe)}
           </tr>
         })
       }
 
   return (
-    <div className="col-8 pt-2">
+    <div className="col-12 col-lg-8 pt-2">
               <table className='ticketRoom__ticketTable'>
                 <thead>
                 </thead>
@@ -72,7 +72,30 @@ export default function HangGhe() {
                   {renderHangGhe()}
                 </tbody>
               </table>
+            <div className="ticketRoom__loaiGhe mt-3">
+              <table>
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><button className='ghe'></button></td>
+                    <td className='pr-2'><span>Ghế thường</span></td>
 
+                    <td><button className='ghe gheVip'></button></td>
+                    <td className='pr-2'><span>Ghế vip</span></td>
+
+                    <td><button className='ghe gheDangChon'></button></td>
+                    <td className='pr-2'><span>Ghế đang chọn</span></td>
+
+                    <td><button className='ghe gheDuocChon'></button></td>
+                    <td className='pr-2'><span>Ghế đã đặt</span></td>
+                  </tr>
+                </tbody>
+              </table>
+             
+         
+          
+            </div>
             </div>
   )
 }

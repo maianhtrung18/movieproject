@@ -30,7 +30,6 @@ export default function TaoLichChieu() {
     }, []);
 
     useEffect(() => {
-        console.log("updating")
         getThongTinCumRapTheoHeThong()
     }, [values.heThongRap]);
 
