@@ -39,7 +39,7 @@ export default function ThemPhimMoi() {
             moTa: Yup.string().required(),
         }),
         onSubmit: values => {
-            console.log(`${startDate.getDate()}/${(startDate.getMonth()<10)? 0+startDate.getMonth():startDate.getMonth()}/${startDate.getFullYear()}`)
+            // console.log(`${startDate.getDate()}/${(startDate.getMonth()<10)? 0+startDate.getMonth():startDate.getMonth()}/${startDate.getFullYear()}`)
             let adminToken = localStorage.getItem(TOKEN)
             let formData = new FormData();
             formData.append('maPhim', '')
@@ -54,9 +54,7 @@ export default function ThemPhimMoi() {
             formData.append('maNhom', values.maNhom)
             formData.append('File', file.selectedFile)
             let themPhim = uploadPhimAPI(formData, adminToken)
-            console.log(formData)
             themPhim.then((result) => {
-                console.log(result)
                 alert('Thêm phim mới thành công')
                 history.push('/quanlyphim')
             }).catch((error) => {
@@ -106,7 +104,6 @@ export default function ThemPhimMoi() {
                     <DatePicker dateFormat='dd/MM/yyyy' name='ngayKhoiChieu' selected={startDate} onChange={
                         (date) => {
                             setStartDate(date)
-                            console.log(date)
                         }
                     } className="form-control" />
                     {formik.touched.ngayKhoiChieu && formik.errors.ngayKhoiChieu ? (

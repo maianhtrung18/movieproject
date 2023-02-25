@@ -129,13 +129,11 @@ export default function EditPhim() {
                     <label>Sắp chiếu</label>
                     <Switch onChange={() => {
                         setPhimState(phimState.sapChieu ? { ...phimState, sapChieu: false } : { ...phimState, sapChieu: true })
-                        // setSapChieu(sapChieuState ? false : true)
                     }} checked={phimState.sapChieu} />
                 </div>
                 <div className="form-group form_NewFilm">
                     <label>Hot</label>
                     <Switch onChange={() => {
-                        // setHot(hotState ? false : true)
                         setPhimState(phimState.hot ? { ...phimState, hot: false } : { ...phimState, hot: true })
                     }} checked={phimState.hot} />
                 </div>
@@ -149,10 +147,8 @@ export default function EditPhim() {
                 <div className="form-group form_NewFilm">
                     <label>Hình ảnh</label>
                     <input onChange={(event) => {
-                        // setShowFile(URL.createObjectURL(event.target.files[0]))
                         setPhimState({ ...phimState, hinhAnh: `${URL.createObjectURL(event.target.files[0])}` })
                         setFile({ selectedFile: event.target.files[0] })
-                        // console.log('file',event.target.files[0])
                     }
                     } type="file" name='hinhAnh' />
                 </div>
