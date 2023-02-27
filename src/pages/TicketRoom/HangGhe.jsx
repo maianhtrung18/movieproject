@@ -14,13 +14,13 @@ export default function HangGhe() {
             let cssGhe = '';
             let disabled = false;
             let gheTK = mangGheDangChon.find(gheDangChon => gheDangChon.maGhe == ghe.maGhe)
+            if(ghe.loaiGhe == "Vip"){
+              cssGhe = "gheVip";
+          }
+
             if(ghe.daDat){
                 cssGhe = 'gheDuocChon'
                 disabled = true;
-            }
-
-            if(ghe.loaiGhe == "Vip"){
-                cssGhe = "gheVip";
             }
             
             if(gheTK){
