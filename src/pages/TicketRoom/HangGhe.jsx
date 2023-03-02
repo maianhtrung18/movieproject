@@ -92,9 +92,6 @@ export default function HangGhe() {
                   </tr>
                 </tbody>
               </table>
-             
-         
-          
             </div>
             </div>
   )
