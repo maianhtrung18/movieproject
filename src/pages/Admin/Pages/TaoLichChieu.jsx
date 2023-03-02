@@ -115,7 +115,6 @@ export default function TaoLichChieu() {
     const getThongTinHeThongRap = () => {
         let promise = thongTinHeThongRapAPI();
         promise.then((result) => {
-            console.log(result.data.content)
             setHeThongRap(result.data.content)
             setValues({
                 ...values,
@@ -146,22 +145,17 @@ export default function TaoLichChieu() {
 
     const renderHeThongRap = () => {
         return heThongRap.map((heThongRapChieu) => {
-            return <>
-                <option value={heThongRapChieu.maHeThongRap}>{heThongRapChieu.tenHeThongRap}</option>
-            </>
+            return <option key={heThongRapChieu.maHeThongRap} value={heThongRapChieu.maHeThongRap}>{heThongRapChieu.tenHeThongRap}</option>   
         })
     }
 
     const renderCumRap = () => {
         return cumRap.map((cumRapChieu) => {
-            return <>
-                <option value={cumRapChieu.maCumRap}>{cumRapChieu.tenCumRap}</option>
-            </>
+            return <option key={cumRapChieu.maCumRap} value={cumRapChieu.maCumRap}>{cumRapChieu.tenCumRap}</option>    
         })
     }
 
-    console.log(errors)
-    console.log(values);
+
     return (
         <div>
             <div className="container">
@@ -203,7 +197,7 @@ export default function TaoLichChieu() {
                                 <tr>
                                     <td>Chức năng</td>
                                     <td>
-                                        <button className='btn btn-primary'>Click</button>
+                                        <button className='btn btn-primary'>Tạo lịch chiếu</button>
                                     </td>
                                 </tr>
                             </tbody>

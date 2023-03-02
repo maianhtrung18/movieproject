@@ -86,6 +86,7 @@ export const datGheAction = (mangGheDangChon, maLichChieu) => {
               }
             })
             promise.then((result) => { 
+                alert("Đặt vé thành công! 🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉");
                 let action = hoanThanhDatGheAction()
                dispatch2(action)
           
