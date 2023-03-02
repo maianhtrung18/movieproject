@@ -72,8 +72,13 @@ export default function ThongTinDatVe() {
                   </table>
                   <button onClick={() => { 
                     let maLichChieu = ticketsRoom.thongTinPhim ? ticketsRoom.thongTinPhim.maLichChieu : 0
-                   let action = datGheAction(mangGheDangChon, maLichChieu)
-                        dispatch(action)
+                    if(mangGheDangChon.length != 0){
+                      let action = datGheAction(mangGheDangChon, maLichChieu)
+                      dispatch(action)
+                    } else {
+                      alert("Vui lòng chọn ghế trước khi đặt!")
+                    }
+          
                    }} className='ticketRoom__buttonDatVe'>Đặt vé</button>
         </>
       }
